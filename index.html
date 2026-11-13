@@ -164,6 +164,26 @@ nav a:hover{color:var(--text)}
 #why .wrap{text-align:center}
 #why h2{margin-left:auto;margin-right:auto}
 #why .why div{text-align:left}
+
+/* plans */
+.pl{text-align:center}
+.pl h2{margin:0 auto}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;text-align:left;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;gap:22px;background:linear-gradient(160deg,#121215,#09090b);border:1px solid var(--line);border-radius:26px;padding:36px 32px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.plan:hover{border-color:var(--pc);box-shadow:0 0 34px color-mix(in srgb,var(--pc) 25%,transparent);transform:translateY(-4px)}
+.plan.hot{border-color:color-mix(in srgb,var(--pc) 55%,transparent)}
+.pname{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:22px;letter-spacing:.12em;text-transform:uppercase}
+.pname i{width:12px;height:12px;border-radius:50%;background:var(--pc);box-shadow:0 0 14px var(--pc)}
+.price{display:flex;align-items:baseline;gap:10px}
+.price b{font-family:var(--display);font-weight:400;font-size:clamp(52px,6vw,72px);line-height:1;background:linear-gradient(180deg,#fff,#9a9ea6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price span{color:var(--muted);font-size:15px}
+.plan ul{list-style:none;flex:1;border-top:1px solid var(--line)}
+.plan li{padding:13px 0 13px 26px;border-bottom:1px solid var(--line);position:relative;color:#d8d8dc;font-size:15px}
+.plan li::before{content:"";position:absolute;left:2px;top:50%;width:11px;height:6px;border-left:1.5px solid var(--pc);border-bottom:1.5px solid var(--pc);transform:translateY(-70%) rotate(-45deg)}
+.plan .btn{text-align:center}
+.badge{position:absolute;top:-13px;right:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:99px;background:var(--pc);color:#000;font-weight:600}
+@media (max-width:980px){.plans{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
+
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
 .eyebrow{display:inline-block;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);margin-bottom:22px;padding:11px 24px 11px 27px;border:1px solid rgba(190,194,202,.4);border-radius:999px;background:rgba(14,14,17,.85);box-shadow:0 0 22px rgba(190,194,202,.22),inset 0 0 14px rgba(190,194,202,.07)}
@@ -240,6 +260,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <a href="#services" data-i="nav_services">Методика</a>
       <a href="#works" data-i="nav_works">Работы</a>
       <a href="#process" data-i="nav_process">Гайд</a>
+      <a href="#plans" data-i="nav_plans">Тарифы</a>
       <a href="#contact" data-i="nav_contact">Контакты</a>
       <div class="lang"><button data-l="ru" class="on">RU</button><button data-l="uz">UZ</button></div>
     </nav>
@@ -398,6 +419,37 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
+<section id="plans">
+  <div class="wrap pl">
+    <div class="eyebrow reveal" data-i="tr_eye">Тарифы</div>
+    <h2 class="reveal" data-i="tr_h">Выберите свой тариф</h2>
+    <!-- TODO: цены и состав тарифов можно менять здесь -->
+    <div class="plans reveal">
+      <div class="plan" style="--pc:#c08a5a">
+        
+        <div class="pname"><i></i>Bronze</div>
+        <div class="price"><b>450</b><span data-i="tr_cur">тыс. сум</span></div>
+        <ul><li data-i="tr_bronze1">Диагностика устройства</li><li data-i="tr_bronze2">Чистка и обслуживание</li><li data-i="tr_bronze3">Гарантия на работы 1 месяц</li></ul>
+        <a class="btn ghost" href="#contact" data-i="tr_btn">Выбрать</a>
+      </div>
+      <div class="plan hot" style="--pc:#cfd2d8">
+        <span class="badge" data-i="tr_pop">Популярный</span>
+        <div class="pname"><i></i>Silver</div>
+        <div class="price"><b>650</b><span data-i="tr_cur">тыс. сум</span></div>
+        <ul><li data-i="tr_silver1">Всё из тарифа Bronze</li><li data-i="tr_silver2">Замена расходных деталей</li><li data-i="tr_silver3">Ремонт основных узлов</li><li data-i="tr_silver4">Гарантия на работы 3 месяца</li></ul>
+        <a class="btn ghost" href="#contact" data-i="tr_btn">Выбрать</a>
+      </div>
+      <div class="plan" style="--pc:#e0b95c">
+        
+        <div class="pname"><i></i>Gold</div>
+        <div class="price"><b>850</b><span data-i="tr_cur">тыс. сум</span></div>
+        <ul><li data-i="tr_gold1">Всё из тарифа Silver</li><li data-i="tr_gold2">Сложный ремонт: платы и моторы</li><li data-i="tr_gold3">Приоритетная очередь</li><li data-i="tr_gold4">Гарантия на работы 6 месяцев</li></ul>
+        <a class="btn ghost" href="#contact" data-i="tr_btn">Выбрать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="contact">
   <div class="wrap">
     <div class="eyebrow reveal" data-i="c_eye">Контакты</div>
@@ -421,7 +473,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',nav_services:'Методика',nav_process:'Гайд',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',tr_eye:'Тарифы',tr_h:'Выберите свой тариф',tr_cur:'тыс. сум',tr_btn:'Выбрать',tr_pop:'Популярный',nav_plans:'Тарифы',tr_bronze1:'Диагностика устройства',tr_bronze2:'Чистка и обслуживание',tr_bronze3:'Гарантия на работы 1 месяц',tr_silver1:'Всё из тарифа Bronze',tr_silver2:'Замена расходных деталей',tr_silver3:'Ремонт основных узлов',tr_silver4:'Гарантия на работы 3 месяца',tr_gold1:'Всё из тарифа Silver',tr_gold2:'Сложный ремонт: платы и моторы',tr_gold3:'Приоритетная очередь',tr_gold4:'Гарантия на работы 6 месяцев',nav_services:'Методика',nav_process:'Гайд',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -435,7 +487,7 @@ p3:'Согласование',p3p:'Называем цену и срок. Раб
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',nav_services:'Metodika',nav_process:"Qo'llanma",nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',tr_eye:'Tariflar',tr_h:'O\'z tarifingizni tanlang',tr_cur:"ming so'm",tr_btn:'Tanlash',tr_pop:'Ommabop',nav_plans:'Tariflar',tr_bronze1:"Qurilma diagnostikasi",tr_bronze2:"Tozalash va xizmat",tr_bronze3:"Ishga 1 oy kafolat",tr_silver1:"Bronze tarifidagi hamma narsa",tr_silver2:"Sarflanadigan qismlarni almashtirish",tr_silver3:"Asosiy uzellarni ta'mirlash",tr_silver4:"Ishga 3 oy kafolat",tr_gold1:"Silver tarifidagi hamma narsa",tr_gold2:"Murakkab ta'mir: plata va motorlar",tr_gold3:"Navbatda ustuvorlik",tr_gold4:"Ishga 6 oy kafolat",nav_services:'Metodika',nav_process:"Qo'llanma",nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
