@@ -101,6 +101,20 @@ nav a:hover{color:var(--text)}
 .about-list li::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:var(--steel)}
 
 
+
+/* reviews */
+.rv{text-align:center}
+.rv h2{margin:0 auto}
+.revgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);text-align:left}
+.rev{background:var(--bg);padding:36px 30px;display:flex;flex-direction:column;gap:22px;transition:background .3s}
+.rev:hover{background:var(--bg2)}
+.stars{letter-spacing:.3em;font-size:15px;color:var(--steel)}
+.rev blockquote{font-size:16px;color:var(--text);line-height:1.7;flex:1}
+.rev figcaption{display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:18px}
+.rev figcaption b{font-family:var(--display);font-weight:500;font-size:18px}
+.rev figcaption span{color:var(--muted);font-size:14px}
+@media (max-width:860px){.revgrid{grid-template-columns:1fr}}
+
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
 .eyebrow{display:inline-block;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);margin-bottom:22px;padding:11px 24px 11px 27px;border:1px solid rgba(190,194,202,.4);border-radius:999px;background:rgba(14,14,17,.85);box-shadow:0 0 22px rgba(190,194,202,.22),inset 0 0 14px rgba(190,194,202,.07)}
@@ -173,6 +187,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <button class="burger" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('open')">≡</button>
     <nav>
       <a href="#about" data-i="nav_about">О нас</a>
+      <a href="#reviews" data-i="nav_reviews">Отзывы</a>
       <a href="#services" data-i="nav_services">Услуги</a>
       <a href="#process" data-i="nav_process">Как работаем</a>
       <a href="#contact" data-i="nav_contact">Контакты</a>
@@ -221,6 +236,31 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <li data-i="a_l2">Диагностика перед ремонтом</li>
         <li data-i="a_l3">Гарантия на выполненные работы</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap rv">
+    <div class="eyebrow reveal" data-i="r_eye">Отзывы</div>
+    <h2 class="reveal" data-i="r_h">Что говорят наши клиенты</h2>
+    <!-- TODO: замените карточки реальными отзывами клиентов -->
+    <div class="revgrid reveal">
+      <figure class="rev">
+        <div class="stars" aria-label="5/5">★★★★★</div>
+        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-label="5/5">★★★★★</div>
+        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-label="5/5">★★★★★</div>
+        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -288,7 +328,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_dv:'Устройство',nav_reviews:'Отзывы',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -302,7 +342,7 @@ p3:'Согласование',p3p:'Называем цену и срок. Раб
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_dv:'Qurilma',nav_reviews:'Fikrlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
