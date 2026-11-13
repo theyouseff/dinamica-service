@@ -239,6 +239,8 @@ footer{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(2
 .flist{list-style:none;display:flex;flex-direction:column;gap:18px}
 .flist li{display:flex;align-items:center;gap:16px;font-size:16px;color:#d4d4d8}
 .fi{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(190,194,202,.4);color:var(--steel);background:#101013}
+.flist a,.fcard b a{transition:color .2s}
+.flist a:hover,.fcard b a:hover{color:#fff}
 .fbottom{border-top:1px solid var(--line);padding:26px 24px 34px;font-size:14px}
 @media (max-width:900px){.foot{grid-template-columns:1fr;gap:44px;padding:60px 24px 40px}}
 
@@ -572,13 +574,14 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,56px);let
       <div class="fcard">
         <h4 data-i="ft_cardh">Быстрая заявка</h4>
         <p data-i="ft_cardp">Позвоните нам, и мы подскажем, что делать с вашей техникой.</p>
-        <b>+998 __ ___ __ __</b>
+        <b><a href="tel:+998500045588">+998 50 004 55 88</a></b>
       </div>
     </div>
     <div class="fcol">
       <h4 data-i="ft_ch">Свяжитесь с нами</h4>
       <ul class="flist">
-        <li><span class="fi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span>+998 __ ___ __ __</span></li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><a href="tel:+998500045588">+998 50 004 55 88</a></li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><a href="tel:+998500045529">+998 50 004 55 29</a></li>
       </ul>
     </div>
     <div class="fcol">
