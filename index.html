@@ -158,6 +158,9 @@ nav a:hover{color:var(--text)}
 #services .wrap{text-align:center}
 #services h2{margin-left:auto;margin-right:auto}
 #services .card{text-align:left}
+#process .wrap{text-align:center}
+#process h2{margin-left:auto;margin-right:auto}
+#process .step{text-align:left}
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
 .eyebrow{display:inline-block;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);margin-bottom:22px;padding:11px 24px 11px 27px;border:1px solid rgba(190,194,202,.4);border-radius:999px;background:rgba(14,14,17,.85);box-shadow:0 0 22px rgba(190,194,202,.22),inset 0 0 14px rgba(190,194,202,.07)}
@@ -233,7 +236,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <a href="#reviews" data-i="nav_reviews">Отзывы</a>
       <a href="#services" data-i="nav_services">Методика</a>
       <a href="#works" data-i="nav_works">Работы</a>
-      <a href="#process" data-i="nav_process">Как работаем</a>
+      <a href="#process" data-i="nav_process">Гайд</a>
       <a href="#contact" data-i="nav_contact">Контакты</a>
       <div class="lang"><button data-l="ru" class="on">RU</button><button data-l="uz">UZ</button></div>
     </nav>
@@ -369,8 +372,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <section id="process">
   <div class="wrap">
-    <div class="eyebrow reveal" data-i="p_eye">Процесс</div>
-    <h2 class="reveal" data-i="p_h">Как мы работаем</h2>
+    <div class="eyebrow reveal" data-i="p_eye">Гайд</div>
+    <h2 class="reveal" data-i="p_h">От чего ломается ваша техника?</h2>
     <div class="steps reveal">
       <div class="step"><b data-i="p1">Заявка</b><span data-i="p1p">Звоните или пишете нам, описываете проблему.</span></div>
       <div class="step"><b data-i="p2">Приём и диагностика</b><span data-i="p2p">Принимаем технику, находим неисправность.</span></div>
@@ -415,7 +418,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',nav_services:'Методика',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',nav_services:'Методика',nav_process:'Гайд',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -424,12 +427,12 @@ s_eye:'Методика',s_h:'Наша методика',s1:'Диагности�
 s2:'Ремонт',s2p:'Устраняем неисправности: от замены аккумулятора до ремонта плат и моторов.',s3:'Запчасти',s3p:'Подбираем и устанавливаем качественные запчасти и комплектующие.',
 s4:'Чистка и обслуживание',s4p:'Профилактика, чистка фильтров и узлов, продление срока службы техники.',s5:'Гарантия',s5p:'На выполненные работы действует гарантия. Условия уточняйте при приёме.',
 s6:'Консультация',s6p:'Подскажем, стоит ли ремонтировать, и как продлить жизнь вашей техники.',
-p_eye:'Процесс',p_h:'Как мы работаем',p1:'Заявка',p1p:'Звоните или пишете нам, описываете проблему.',p2:'Приём и диагностика',p2p:'Принимаем технику, находим неисправность.',
+p_eye:'Гайд',p_h:'От чего ломается ваша техника?',p1:'Заявка',p1p:'Звоните или пишете нам, описываете проблему.',p2:'Приём и диагностика',p2p:'Принимаем технику, находим неисправность.',
 p3:'Согласование',p3p:'Называем цену и срок. Работаем только с вашего согласия.',p4:'Ремонт и выдача',p4p:'Ремонтируем, проверяем и возвращаем технику.',
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',nav_services:'Metodika',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',nav_services:'Metodika',nav_process:"Qo'llanma",nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
@@ -438,7 +441,7 @@ s_eye:'Metodika',s_h:'Bizning metodikamiz',s1:'Diagnostika',s1p:"Nosozlik sababi
 s2:"Ta'mirlash",s2p:"Nosozliklarni bartaraf etamiz: akkumulyator almashtirishdan plata va motor ta'mirigacha.",s3:'Ehtiyot qismlar',s3p:"Sifatli ehtiyot qismlarni tanlab o'rnatamiz.",
 s4:'Tozalash va xizmat',s4p:"Profilaktika, filtr va uzellarni tozalash, texnika xizmat muddatini uzaytirish.",s5:'Kafolat',s5p:"Bajarilgan ishlarga kafolat beriladi. Shartlarini qabul paytida aniqlashtiring.",
 s6:'Maslahat',s6p:"Ta'mirlashga arziydimi va texnikangiz umrini qanday uzaytirish mumkinligini aytamiz.",
-p_eye:'Jarayon',p_h:'Qanday ishlaymiz',p1:'Ariza',p1p:"Qo'ng'iroq qilasiz yoki yozasiz, muammoni tasvirlaysiz.",p2:'Qabul va diagnostika',p2p:'Texnikani qabul qilamiz, nosozlikni topamiz.',
+p_eye:"Qo'llanma",p_h:'Texnikangiz nimadan buziladi?',p1:'Ariza',p1p:"Qo'ng'iroq qilasiz yoki yozasiz, muammoni tasvirlaysiz.",p2:'Qabul va diagnostika',p2p:'Texnikani qabul qilamiz, nosozlikni topamiz.',
 p3:'Kelishuv',p3p:"Narx va muddatni aytamiz. Faqat sizning roziligingiz bilan ishlaymiz.",p4:"Ta'mirlash va topshirish",p4p:"Ta'mirlaymiz, tekshiramiz va texnikani qaytaramiz.",
 w_eye:'Nega biz',w_h:"Tafsilotlarga e'tibor",w1:'Tajriba',w1p:"Dyson'ga ixtisoslashganmiz va odatiy nosozliklarni bilamiz.",w2:'Ochiqlik',w2p:"Narx va muddat oldindan kelishiladi, yashirin to'lovlarsiz.",
 w3:'Sifat',w3p:"Ta'mirdan keyin texnikani tekshiramiz va ishga kafolat beramiz.",c_eye:'Aloqa',c_h:"Biz bilan bog'laning",c_p:"Muammoni aytib bering, nima qilishni maslahat beramiz.",
