@@ -64,18 +64,15 @@ nav a:hover{color:var(--text)}
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0 30px;background:rgba(255,255,255,.015)}
 .mq-label{text-align:center;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding:0 24px}
 .mq-mask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.mq-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq-track{display:flex;align-items:baseline;width:max-content;animation:mq 38s linear infinite}
 @keyframes mq{to{transform:translateX(-50%)}}
-.brand{flex:none;padding:0 38px;font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.06em;white-space:nowrap;
+.brand{flex:none;line-height:1.2;padding:0 38px;font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.06em;white-space:nowrap;
   background:linear-gradient(180deg,#fff,#8e929a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .b-lower{text-transform:none;letter-spacing:0;font-size:30px}
 .b-wide{letter-spacing:.2em;font-size:22px}
 .b-bold{font-weight:600}
 .b-thin{font-weight:300}
 .b-cap{letter-spacing:0}
-.b-box,.b-pill{position:relative}
-.b-box::after,.b-pill::after{content:"";position:absolute;inset:-6px 28px;border:2px solid #b9bcc3;border-radius:4px}
-.b-pill::after{border-radius:99px;inset:-8px 24px}
 @media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
 
 
