@@ -105,15 +105,27 @@ nav a:hover{color:var(--text)}
 /* reviews */
 .rv{text-align:center}
 .rv h2{margin:0 auto}
-.revgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);text-align:left}
-.rev{background:var(--bg);padding:36px 30px;display:flex;flex-direction:column;gap:22px;transition:background .3s}
-.rev:hover{background:var(--bg2)}
-.stars{letter-spacing:.3em;font-size:15px;color:var(--steel)}
-.rev blockquote{font-size:16px;color:var(--text);line-height:1.7;flex:1}
-.rev figcaption{display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:18px}
-.rev figcaption b{font-family:var(--display);font-weight:500;font-size:18px}
-.rev figcaption span{color:var(--muted);font-size:14px}
-@media (max-width:860px){.revgrid{grid-template-columns:1fr}}
+.carousel{position:relative;margin-top:56px}
+.revtrack{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 10px;text-align:left}
+.revtrack::-webkit-scrollbar{display:none}
+.rev{flex:0 0 calc((100% - 44px)/3);scroll-snap-align:start;background:linear-gradient(160deg,#101013,#08080a);border:1px solid var(--line);border-radius:26px;padding:28px 28px 24px;display:flex;flex-direction:column;gap:16px;transition:border-color .3s,box-shadow .3s}
+.rev:hover{border-color:rgba(190,194,202,.4);box-shadow:0 0 28px rgba(190,194,202,.12)}
+.rhead{display:flex;align-items:center;gap:14px}
+.av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:19px;color:var(--steel);border:1px solid rgba(190,194,202,.45);background:#15151a}
+.rhead b{display:block;font-family:var(--display);font-weight:500;font-size:18px}
+.rhead .rdev{display:block;color:var(--muted);font-size:13px}
+.stars{letter-spacing:.3em;font-size:14px;color:var(--steel)}
+.rtext{font-size:15.5px;line-height:1.7;color:#d8d8dc;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.rev.open .rtext{-webkit-line-clamp:unset;display:block}
+.more{align-self:flex-start;background:none;border:0;color:var(--steel);font:500 14px var(--body);cursor:pointer;padding:0;border-bottom:1px solid rgba(190,194,202,.4)}
+.nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(8,8,10,.9);color:var(--steel);font-size:26px;line-height:1;cursor:pointer;transition:.25s}
+.nav:hover{border-color:var(--steel);box-shadow:0 0 18px rgba(190,194,202,.25)}
+.nav.prev{left:-22px}.nav.next{right:-22px}
+.dots{display:flex;gap:10px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.dots button{width:12px;height:12px;border-radius:99px;border:0;background:rgba(255,255,255,.18);cursor:pointer;transition:.3s;padding:0}
+.dots button.on{width:38px;background:var(--steel)}
+@media (max-width:980px){.rev{flex-basis:calc((100% - 22px)/2)}}
+@media (max-width:640px){.rev{flex-basis:88%}.nav{display:none}}
 
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
@@ -245,23 +257,43 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="eyebrow reveal" data-i="r_eye">Отзывы</div>
     <h2 class="reveal" data-i="r_h">Что говорят наши клиенты</h2>
     <!-- TODO: замените карточки реальными отзывами клиентов -->
-    <div class="revgrid reveal">
+    <div class="carousel reveal">
+      <button class="nav prev" aria-label="Назад" type="button">‹</button>
+      <div class="revtrack">
       <figure class="rev">
+        <div class="rhead"><span class="av">И</span><div><b class="rname" data-i="r_nm">Имя клиента</b><span class="rdev" data-i="r_dv">Устройство</span></div></div>
         <div class="stars" aria-label="5/5">★★★★★</div>
-        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
-        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+        <blockquote class="rtext" data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <button class="more" type="button" hidden data-i="r_more">Читать далее</button>
       </figure>
       <figure class="rev">
+        <div class="rhead"><span class="av">И</span><div><b class="rname" data-i="r_nm">Имя клиента</b><span class="rdev" data-i="r_dv">Устройство</span></div></div>
         <div class="stars" aria-label="5/5">★★★★★</div>
-        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
-        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+        <blockquote class="rtext" data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <button class="more" type="button" hidden data-i="r_more">Читать далее</button>
       </figure>
       <figure class="rev">
+        <div class="rhead"><span class="av">И</span><div><b class="rname" data-i="r_nm">Имя клиента</b><span class="rdev" data-i="r_dv">Устройство</span></div></div>
         <div class="stars" aria-label="5/5">★★★★★</div>
-        <blockquote data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
-        <figcaption><b data-i="r_nm">Имя клиента</b><span data-i="r_dv">Устройство</span></figcaption>
+        <blockquote class="rtext" data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <button class="more" type="button" hidden data-i="r_more">Читать далее</button>
       </figure>
+      <figure class="rev">
+        <div class="rhead"><span class="av">И</span><div><b class="rname" data-i="r_nm">Имя клиента</b><span class="rdev" data-i="r_dv">Устройство</span></div></div>
+        <div class="stars" aria-label="5/5">★★★★★</div>
+        <blockquote class="rtext" data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <button class="more" type="button" hidden data-i="r_more">Читать далее</button>
+      </figure>
+      <figure class="rev">
+        <div class="rhead"><span class="av">И</span><div><b class="rname" data-i="r_nm">Имя клиента</b><span class="rdev" data-i="r_dv">Устройство</span></div></div>
+        <div class="stars" aria-label="5/5">★★★★★</div>
+        <blockquote class="rtext" data-i="r_ph">Здесь будет текст отзыва клиента.</blockquote>
+        <button class="more" type="button" hidden data-i="r_more">Читать далее</button>
+      </figure>
+      </div>
+      <button class="nav next" aria-label="Вперёд" type="button">›</button>
     </div>
+    <div class="dots"></div>
   </div>
 </section>
 
@@ -328,7 +360,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_dv:'Устройство',nav_reviews:'Отзывы',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -342,7 +374,7 @@ p3:'Согласование',p3p:'Называем цену и срок. Раб
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_dv:'Qurilma',nav_reviews:'Fikrlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
@@ -362,6 +394,7 @@ function setLang(l){
   document.querySelectorAll('[data-i]').forEach(e=>{const v=T[l][e.dataset.i];if(v)e.textContent=v});
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
   try{localStorage.setItem('lang',l)}catch(e){}
+  if(window.__rv)window.__rv();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 let saved='ru';try{saved=localStorage.getItem('lang')||'ru'}catch(e){}
@@ -399,6 +432,30 @@ document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
     (function f(t){const k=Math.min((t-t0)/d,1),v=Math.round(end*(1-Math.pow(1-k,3)));el.textContent=v;if(k<1)requestAnimationFrame(f)})(t0);
   }),{threshold:.6});
   els.forEach(e=>io2.observe(e));
+})();
+
+// reviews carousel
+(function(){
+  const tr=document.querySelector('.revtrack');if(!tr)return;
+  const cards=[...tr.children],dots=document.querySelector('.dots');
+  const tt=k=>(T[document.documentElement.lang]||T.ru)[k];
+  cards.forEach((c,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',i+1);b.onclick=()=>go(i);dots.appendChild(b)});
+  const step=()=>cards.length>1?cards[1].offsetLeft-cards[0].offsetLeft:tr.clientWidth;
+  function go(i){tr.scrollTo({left:i*step(),behavior:'smooth'})}
+  function cur(){return Math.min(cards.length-1,Math.round(tr.scrollLeft/step()))}
+  function mark(){const k=cur();[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===k))}
+  tr.addEventListener('scroll',()=>requestAnimationFrame(mark));
+  document.querySelector('.nav.prev').onclick=()=>go(Math.max(0,cur()-1));
+  document.querySelector('.nav.next').onclick=()=>go(Math.min(cards.length-1,cur()+1));
+  cards.forEach(c=>{const t=c.querySelector('.rtext'),b=c.querySelector('.more');
+    b.onclick=()=>{c.classList.toggle('open');b.textContent=tt(c.classList.contains('open')?'r_less':'r_more')}});
+  function refresh(){cards.forEach(c=>{
+    const t=c.querySelector('.rtext'),b=c.querySelector('.more');
+    c.querySelector('.av').textContent=(c.querySelector('.rname').textContent.trim()[0]||'?').toUpperCase();
+    const was=c.classList.contains('open');c.classList.remove('open');
+    b.hidden=!(t.scrollHeight>t.clientHeight+2);b.textContent=tt('r_more');
+    if(was&&!b.hidden){c.classList.add('open');b.textContent=tt('r_less')}});mark()}
+  window.__rv=refresh;addEventListener('resize',refresh);addEventListener('load',refresh);refresh();
 })();
 </script>
 </body>
