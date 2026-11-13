@@ -59,6 +59,26 @@ nav a:hover{color:var(--text)}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .hero{position:relative}
 
+
+/* brand marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0 30px;background:rgba(255,255,255,.015)}
+.mq-label{text-align:center;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding:0 24px}
+.mq-mask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq-mask:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.brand{flex:none;padding:0 38px;font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.06em;white-space:nowrap;
+  background:linear-gradient(180deg,#fff,#8e929a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.b-lower{text-transform:none;letter-spacing:0;font-size:30px}
+.b-wide{letter-spacing:.2em;font-size:22px}
+.b-bold{font-weight:600}
+.b-thin{font-weight:300}
+.b-cap{letter-spacing:0}
+.b-box,.b-pill{position:relative}
+.b-box::after,.b-pill::after{content:"";position:absolute;inset:-6px 28px;border:2px solid #b9bcc3;border-radius:4px}
+.b-pill::after{border-radius:99px;inset:-8px 24px}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
@@ -151,6 +171,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </div>
 
+<div class="marquee" aria-label="Brands">
+  <div class="mq-label" data-i="mq">Список обслуживаемых брендов</div>
+  <div class="mq-mask"><div class="mq-track"><span class="brand b-braun">BRAUN</span><span class="brand b-lower">dyson</span><span class="brand b-wide">DREAME</span><span class="brand b-bold">PHILIPS</span><span class="brand b-lower b-wide">roborock</span><span class="brand b-lower b-wide">xiaomi</span><span class="brand b-bold b-box">THOMAS</span><span class="brand b-wide">TROUVER</span><span class="brand b-lower b-bold">smeg</span><span class="brand b-bold b-cap">Tefal</span><span class="brand b-wide">KRUPS</span><span class="brand b-bold b-pill b-cap">DeLonghi</span><span class="brand b-wide b-thin">LAURASTAR</span><span class="brand b-wide b-thin">BONECO</span><span class="brand b-bold">SAMSUNG</span><span class="brand b-braun">BRAUN</span><span class="brand b-lower">dyson</span><span class="brand b-wide">DREAME</span><span class="brand b-bold">PHILIPS</span><span class="brand b-lower b-wide">roborock</span><span class="brand b-lower b-wide">xiaomi</span><span class="brand b-bold b-box">THOMAS</span><span class="brand b-wide">TROUVER</span><span class="brand b-lower b-bold">smeg</span><span class="brand b-bold b-cap">Tefal</span><span class="brand b-wide">KRUPS</span><span class="brand b-bold b-pill b-cap">DeLonghi</span><span class="brand b-wide b-thin">LAURASTAR</span><span class="brand b-wide b-thin">BONECO</span><span class="brand b-bold">SAMSUNG</span></div></div>
+</div>
+
 <section id="brands">
   <div class="wrap">
     <div class="eyebrow reveal" data-i="b_eye">Бренды</div>
@@ -233,7 +258,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',
+ru:{nav_brands:'Бренды',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -247,7 +272,7 @@ p3:'Согласование',p3p:'Называем цену и срок. Раб
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',
+uz:{nav_brands:'Brendlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
