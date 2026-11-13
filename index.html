@@ -88,6 +88,14 @@ nav a:hover{color:var(--text)}
 .lbl{margin-top:14px;color:var(--muted);font-size:16px}
 @media (max-width:860px){.stats-grid{grid-template-columns:1fr;gap:34px}.stats{padding:64px 0}}
 
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.about-list{list-style:none;margin-top:30px;border-top:1px solid var(--line)}
+.about-list li{padding:15px 0 15px 26px;border-bottom:1px solid var(--line);position:relative;font-family:var(--display);font-size:19px}
+.about-list li::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:var(--steel)}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:30px}}
+
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
@@ -159,6 +167,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <a href="#top" class="logo">DINAMICA</a>
     <button class="burger" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('open')">≡</button>
     <nav>
+      <a href="#about" data-i="nav_about">О нас</a>
       <a href="#services" data-i="nav_services">Услуги</a>
       <a href="#process" data-i="nav_process">Как работаем</a>
       <a href="#contact" data-i="nav_contact">Контакты</a>
@@ -191,6 +200,24 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="stat reveal"><div class="num"><span data-count="1200">1200</span><i>+</i></div><div class="lbl" data-i="st3">отремонтированных техник</div></div>
   </div>
 </div>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow reveal" data-i="a_eye">О нас</div>
+      <h2 class="reveal" data-i="a_h">DINAMICA — сервисный центр, которому доверяют</h2>
+    </div>
+    <div class="reveal">
+      <p class="lead" style="margin-top:0" data-i="a_p1">Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.</p>
+      <p class="lead" data-i="a_p2">Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.</p>
+      <ul class="about-list">
+        <li data-i="a_l1">Прозрачные цены и сроки</li>
+        <li data-i="a_l2">Диагностика перед ремонтом</li>
+        <li data-i="a_l3">Гарантия на выполненные работы</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <section id="services">
   <div class="wrap">
@@ -255,7 +282,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр, которому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За 3 года работы помогли более чем 1000 клиентов и вернули к жизни свыше 1200 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',nav_services:'Услуги',nav_process:'Как работаем',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке',st2u:'года',st3:'отремонтированных техник',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -269,7 +296,7 @@ p3:'Согласование',p3p:'Называем цену и срок. Раб
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli servis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. 3 yil davomida 1000 dan ortiq mijozga yordam berdik va 1200 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',nav_services:'Xizmatlar',nav_process:'Ish tartibi',nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'bozorda',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
