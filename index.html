@@ -216,6 +216,9 @@ nav a:hover{color:var(--text)}
 .qa summary i::before,.qa summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--steel);transform:translate(-50%,-50%);transition:transform .3s}
 .qa summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
 .qa[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
+.qa.closing summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa summary i{transition:border-color .3s,background .3s}
+.qa[open]:not(.closing) summary i{border-color:var(--steel);background:rgba(255,255,255,.06)}
 .qa p{padding:0 28px 26px;color:var(--muted);max-width:720px}
 @media (max-width:640px){.qa summary{padding:20px 20px}.qa p{padding:0 20px 22px}}
 
@@ -661,6 +664,36 @@ const WORKS=Array.from({length:8},()=>({before:null,after:null}));
     b.hidden=!(t.scrollHeight>t.clientHeight+2);b.textContent=tt('r_more');
     if(was&&!b.hidden){c.classList.add('open');b.textContent=tt('r_less')}});mark()}
   window.__rv=refresh;addEventListener('resize',refresh);addEventListener('load',refresh);refresh();
+})();
+
+// faq: smooth open/close
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('.qa').forEach(d=>{
+    const sum=d.querySelector('summary'),body=d.querySelector('p');let anim=null;
+    sum.addEventListener('click',e=>{
+      e.preventDefault();
+      if(reduce){d.open=!d.open;return}
+      if(anim)anim.cancel();
+      const start=d.offsetHeight;
+      if(!d.open){
+        d.open=true;
+        const end=d.offsetHeight;
+        d.style.overflow='hidden';
+        anim=d.animate({height:[start+'px',end+'px']},{duration:420,easing:'cubic-bezier(.22,.8,.24,1)'});
+        body.animate({opacity:[0,1],transform:['translateY(-8px)','none']},{duration:420,easing:'ease-out'});
+        anim.onfinish=anim.oncancel=()=>{d.style.overflow='';anim=null};
+      }else{
+        const end=sum.offsetHeight;
+        d.style.overflow='hidden';
+        d.classList.add('closing');
+        anim=d.animate({height:[start+'px',end+'px']},{duration:340,easing:'cubic-bezier(.4,0,.2,1)'});
+        body.animate({opacity:[1,0]},{duration:200,fill:'forwards'});
+        anim.onfinish=()=>{d.open=false;d.classList.remove('closing');d.style.overflow='';anim=null};
+        anim.oncancel=()=>{d.classList.remove('closing');d.style.overflow=''};
+      }
+    });
+  });
 })();
 </script>
 </body>
