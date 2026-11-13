@@ -670,26 +670,30 @@ const WORKS=Array.from({length:8},()=>({before:null,after:null}));
 (function(){
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   document.querySelectorAll('.qa').forEach(d=>{
-    const sum=d.querySelector('summary'),body=d.querySelector('p');let anim=null;
+    const sum=d.querySelector('summary'),body=d.querySelector('p');let anim=null,fade=null;
     sum.addEventListener('click',e=>{
       e.preventDefault();
       if(reduce){d.open=!d.open;return}
-      if(anim)anim.cancel();
       const start=d.offsetHeight;
-      if(!d.open){
+      const reopen=d.classList.contains('closing');
+      if(anim){anim.onfinish=anim.oncancel=null;anim.cancel()}
+      if(fade){fade.cancel();fade=null}
+      if(!d.open||reopen){
+        d.classList.remove('closing');
         d.open=true;
         const end=d.offsetHeight;
         d.style.overflow='hidden';
         anim=d.animate({height:[start+'px',end+'px']},{duration:420,easing:'cubic-bezier(.22,.8,.24,1)'});
-        body.animate({opacity:[0,1],transform:['translateY(-8px)','none']},{duration:420,easing:'ease-out'});
+        fade=body.animate({opacity:[0,1],transform:['translateY(-8px)','none']},{duration:420,easing:'ease-out'});
+        fade.onfinish=()=>{fade=null};
         anim.onfinish=anim.oncancel=()=>{d.style.overflow='';anim=null};
       }else{
         const end=sum.offsetHeight;
         d.style.overflow='hidden';
         d.classList.add('closing');
         anim=d.animate({height:[start+'px',end+'px']},{duration:340,easing:'cubic-bezier(.4,0,.2,1)'});
-        body.animate({opacity:[1,0]},{duration:200,fill:'forwards'});
-        anim.onfinish=()=>{d.open=false;d.classList.remove('closing');d.style.overflow='';anim=null};
+        fade=body.animate({opacity:[1,0]},{duration:200,fill:'forwards'});
+        anim.onfinish=()=>{if(fade){fade.cancel();fade=null}d.open=false;d.classList.remove('closing');d.style.overflow='';anim=null};
         anim.oncancel=()=>{d.classList.remove('closing');d.style.overflow=''};
       }
     });
