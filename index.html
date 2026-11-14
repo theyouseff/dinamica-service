@@ -1033,7 +1033,7 @@ async function init(){
     d_cap:{ru:['Циклонный блок','Жёлтый узел с циклонами (Root Cyclone) отделяет пыль от воздуха центробежной силой. Забитые циклоны дают слабую тягу и свист.'],uz:['Siklon bloki','Sariq blok siklonlari (Root Cyclone) changni havodan markazdan qochma kuch bilan ajratadi. Tiqilgan siklonlar kuchsiz tortish va hushtak beradi.']},
     d_trigger:{ru:['Курок','Включает и выключает двигатель. Залипание и износ контактов — частая причина «не включается».'],uz:['Tetik','Dvigatelni yoqadi va o\'chiradi. Yopishib qolish va kontakt eskirishi «yoqilmaydi» muammosining keng tarqalgan sababi.']},
     d_lcd:{ru:['ЖК-экран','Показывает режим, заряд и количество частиц. Коды ошибок на экране подсказывают тип неисправности.'],uz:['LCD ekran','Rejim, zaryad va zarralar sonini ko\'rsatadi. Ekrandagi xato kodlari nosozlik turini bildiradi.']},
-    d_handle:{ru:['Рукоятка','Две опоры соединяют корпус с аккумулятором и образуют рукоятку, в которой держится курок. Трещины и ослабленные крепления дают люфт.'],uz:['Dasta','Ikki tayanch korpusni akkumulyator bilan bog\'laydi va tetik joylashgan dastani hosil qiladi. Yoriq va bo\'shagan mahkamlagichlar luft beradi.']},
+    d_handle:{ru:['Рукоятка','Две опоры соединяют корпус с аккумулятором и образуют рукоятку с кнопкой включения (курком) на нижней стороне. Трещины и ослабленные крепления дают люфт.'],uz:['Dasta','Ikki tayanch korpusni akkumulyator bilan bog\'laydi va pastki tomonida yoqish tugmasi (tetik) bor dastani hosil qiladi. Yoriq va bo\'shagan mahkamlagichlar luft beradi.']},
     d_battery:{ru:['Аккумулятор','Съёмный литий-ионный аккумулятор. Со временем теряет ёмкость: пылесос работает меньше, индикатор мигает.'],uz:['Akkumulyator','Olinadigan litiy-ion akkumulyator. Vaqt o\'tishi bilan sig\'imi kamayadi: changyutgich kamroq ishlaydi, indikator miltillaydi.']},
     body:{ru:['Корпус','Каркас и боковые панели, на которых держится вся конструкция.'],uz:['Korpus','Butun konstruksiya tayanib turadigan karkas va yon panellar.']}
   };
@@ -1442,15 +1442,14 @@ async function init(){
   });
   part('d_handle',[0.75,5.7,-0.28],[1.3,0.5,0],g=>{
     g.add(place(box(.66,.16,.5,M.dyNickel,.05),0,.5,0));
+    g.add(place(box(.24,.1,.3,M.dyRed,.04),0,.4,0));
+    g.add(place(box(.14,.05,.18,M.dyRed,.02),0,.35,0));
     g.add(place(box(.66,.16,.5,M.dyNickel,.05),0,-.5,0));
   });
   part('d_battery',[1.15,5.7,-0.28],[2.6,0.3,0],g=>{
     g.add(place(box(.28,1.95,.78,M.dyBat,.08),0,0,0));
     g.add(place(box(.32,.36,.52,M.dyNickel,.05),0,-.8,0));
     g.add(place(box(.12,.16,.08,M.dyRed,.02),.14,-.98,.36));
-  });
-  part('d_trigger',[0.72,5.95,0.1],[2.0,-0.3,1.7],g=>{
-    g.add(place(box(.12,.36,.14,M.dyRed,.04),0,0,0,.2));
   });
   items=coffeeItems;
 
