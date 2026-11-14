@@ -999,8 +999,9 @@ async function init(){
     boiler:{ru:['Термоблок','Быстро нагревает воду до рабочей температуры. Накипь снижает нагрев и может привести к поломке.'],uz:['Termoblok','Suvni ishchi haroratgacha tez qizdiradi. Qatqaloq qizdirishni pasaytiradi va nosozlikka olib kelishi mumkin.']},
     grounds:{ru:['Контейнер для жмыха','Собирает отработанный кофе после приготовления. Нужно регулярно очищать.'],uz:['Kofe qoldig\'i idishi','Tayyorlangandan keyingi ishlatilgan kofeni yig\'adi. Muntazam tozalash kerak.']},
     drip:{ru:['Поддон','Принимает капли и пролитую жидкость.'],uz:['Tomchi idishi','Tomchilar va to\'kilgan suyuqlikni qabul qiladi.']},
-    panel:{ru:['Панель управления','Плата и кнопки: выбор напитка и настроек. Влага и перепады напряжения могут её повредить.'],uz:['Boshqaruv paneli','Plata va tugmalar: ichimlik va sozlamalarni tanlash. Namlik va kuchlanish o\'zgarishi uni shikastlashi mumkin.']},
-    spout:{ru:['Выдача напитка','Подаёт кофе в чашку. Засор отверстий даёт неровную струю.'],uz:['Ichimlik chiqargich','Kofeni chashkaga quyadi. Teshiklar tiqilsa, oqim notekis bo\'ladi.']},
+    panel:{ru:['Сенсорная панель','Цветной экран для выбора напитка и настроек. Влага и перепады напряжения могут её повредить.'],uz:['Sensorli panel','Ichimlik va sozlamalarni tanlash uchun rangli ekran. Namlik va kuchlanish o\'zgarishi uni shikastlashi mumkin.']},
+    front:{ru:['Передняя панель','Закрывает механизмы спереди, создаёт нишу для чашки и защищает от брызг.'],uz:['Old panel','Mexanizmlarni oldindan yopadi, chashka uchun joy hosil qiladi va sachrashdan himoya qiladi.']},
+    spout:{ru:['Блок выдачи','Хромированный блок с носиками подаёт кофе и молоко в чашку. Засор отверстий даёт неровную струю.'],uz:['Chiqarish bloki','Xromlangan blok kofe va sutni chashkaga uzatadi. Teshiklar tiqilsa, oqim notekis bo\'ladi.']},
     chute:{ru:['Воронка и канал подачи','Направляет молотый кофе из кофемолки в заварочный блок. Влажный или маслянистый кофе налипает и забивает канал.'],uz:['Voronka va uzatish kanali','Maydalangan kofeni tegirmondan damlash blokiga yo\'naltiradi. Nam yoki moyli kofe yopishib, kanalni tiqib qo\'yadi.']},
     frother:{ru:['Капучинатор','Паровая трубка с насадкой взбивает молоко в пену. Засор отверстий и накипь дают слабый пар и плохую пену.'],uz:['Kapuchinator','Nasadkali bug\' trubkasi sutni ko\'pik qiladi. Teshiklar tiqilsa yoki qatqaloq bo\'lsa, bug\' zaif va ko\'pik yomon chiqadi.']},
     filter:{ru:['Фильтр воды','Смягчает воду и задерживает известь. Менять нужно вовремя: иначе накипь попадает в термоблок и насос.'],uz:['Suv filtri','Suvni yumshatadi va ohakni ushlab qoladi. O\'z vaqtida almashtirish kerak: aks holda qatqaloq termoblok va nasosga o\'tadi.']},
@@ -1010,7 +1011,7 @@ async function init(){
     hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Медные участки — горячая вода и пар, белая трубка — молоко. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv va bug\' uchun, oq quvur sut uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
     body:{ru:['Корпус','Каркас и боковые панели, на которых держится вся конструкция.'],uz:['Korpus','Butun konstruksiya tayanib turadigan karkas va yon panellar.']}
   };
-  const ORDER=['hopper','grinder','chute','brew','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','spout','cover','body'];
+  const ORDER=['hopper','grinder','chute','brew','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','front','spout','cover','body'];
   const UI={
     ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы узнать подробнее',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
     uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Batafsil bilish uchun detalga bosing',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
@@ -1070,30 +1071,44 @@ async function init(){
     items.push({id,group:g,base:new THREE.Vector3(...pos),dir:new THREE.Vector3(...dir),delay:items.length*0.02});
   }
 
-  part('hopper',[-0.7,2.95,-0.9],[0,2.6,0],g=>{
-    g.add(place(cyl(.62,.62,1.0,M.glass),0,0,0));
-    g.add(place(cyl(.5,.5,.55,M.bean),0,-.2,0));
-    g.add(place(cyl(.67,.67,.14,M.silver),0,.57,0));
-    g.add(place(cyl(.12,.12,.1,M.dark),0,.68,0));
+  // extra materials & screen texture
+  M.gloss=new THREE.MeshStandardMaterial({color:0x060608,metalness:.7,roughness:.14});
+  M.chrome=new THREE.MeshStandardMaterial({color:0xe3e6ea,metalness:1,roughness:.12});
+  M.side=new THREE.MeshStandardMaterial({color:0xaeb2ba,metalness:.88,roughness:.3});
+  M.cup=new THREE.MeshStandardMaterial({color:0xcfd8e0,metalness:0,roughness:.05,transparent:true,opacity:.35});
+  M.coffee=new THREE.MeshStandardMaterial({color:0x6b4528,metalness:0,roughness:.5});
+  M.foam=new THREE.MeshStandardMaterial({color:0xf2e8d8,metalness:0,roughness:.7});
+  const scr=document.createElement('canvas');scr.width=640;scr.height=170;const cx=scr.getContext('2d');
+  cx.fillStyle='#07090d';cx.fillRect(0,0,640,170);
+  const cols=['#d9a76a','#c58a58','#e8d7b8','#b8865a','#cfd2d8','#d9a76a'];
+  cols.forEach((c,i)=>{const x=60+i*104,y=70;const g2=cx.createRadialGradient(x,y,4,x,y,30);g2.addColorStop(0,'#fff');g2.addColorStop(1,c);cx.fillStyle=g2;cx.beginPath();cx.arc(x,y,28,0,7);cx.fill();cx.fillStyle='#9aa0aa';cx.fillRect(x-22,y+42,44,4)});
+  const screenTex=new THREE.CanvasTexture(scr);screenTex.colorSpace=THREE.SRGBColorSpace;
+
+  part('hopper',[-0.6,1.75,-0.7],[0,2.5,0],g=>{
+    g.add(place(cyl(.6,.6,.7,M.glass),0,0,0));
+    g.add(place(cyl(.5,.5,.4,M.bean),0,-.15,0));
+    g.add(place(cyl(.64,.64,.1,M.silver),0,.4,0));
   });
-  part('cover',[0,2.2,0],[0,1.4,0],g=>{
-    g.add(place(box(3.0,.22,3.9,M.silver,.09),0,0,0));
-    g.add(place(box(1.5,.03,1.3,M.black,.02),0.7,.12,0.7));
+  part('cover',[0,2.25,-0.1],[0,1.5,0],g=>{
+    g.add(place(box(3.0,.2,3.5,M.gloss,.08),0,0,0));
+    g.add(place(box(3.02,.04,3.52,M.silver,.02),0,-.08,0));
+    g.add(place(box(1.5,.03,.5,M.silver,.01),0,.11,-.9));
+    g.add(place(box(1.4,.035,.14,M.black,.01),0,.12,-.9));
   });
-  part('grinder',[-0.7,1.8,-0.9],[0,0.9,0],g=>{
-    g.add(place(cyl(.5,.5,.55,M.silver),0,0,0));
-    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.5,.07,16,48),M.dark),0,.15,0,Math.PI/2));
-    g.add(place(cyl(.14,.14,.7,M.steel),0,-.05,0));
+  part('grinder',[-0.6,1.15,-0.7],[0,1.0,0],g=>{
+    g.add(place(cyl(.5,.5,.5,M.silver),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.5,.07,16,48),M.dark),0,.12,0,Math.PI/2));
+    g.add(place(cyl(.14,.14,.65,M.steel),0,-.05,0));
   });
-  part('chute',[-0.7,1.3,-0.9],[-1.0,0.5,1.5],g=>{
-    g.add(place(cyl(.28,.1,.3,M.steel,32),0,.12,0));
-    g.add(place(cyl(.09,.09,.53,M.silver,24),0,-.09,.25,1.92));
-    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.12,.025,10,24),M.dark),0,-.18,.5,Math.PI/2));
+  part('chute',[-0.6,0.9,-0.7],[-0.8,0.5,1.3],g=>{
+    g.add(place(cyl(.26,.1,.28,M.steel,32),0,.1,0));
+    g.add(place(cyl(.09,.09,.54,M.silver,24),0,-.1,.25,1.95));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.12,.025,10,24),M.dark),0,-.2,.5,Math.PI/2));
   });
-  part('brew',[-0.7,0.5,-0.4],[-1.9,0.4,0.2],g=>{
-    g.add(place(box(1.1,1.2,1.3,M.steel,.08),0,0,0));
-    g.add(place(cyl(.2,.2,.55,M.silver),0,.8,.1));
-    g.add(place(cyl(.2,.2,.55,M.silver),0,-.8,.1));
+  part('brew',[-0.6,0.0,-0.4],[-1.9,0.4,0.2],g=>{
+    g.add(place(box(1.1,1.0,1.3,M.steel,.08),0,0,0));
+    g.add(place(cyl(.2,.2,.3,M.silver),0,.62,.1));
+    g.add(place(cyl(.2,.2,.3,M.silver),0,-.62,.1));
     g.add(place(box(.5,.18,.5,M.dark,.04),0,0,.7));
   });
   part('tank',[2.05,-0.65,0.0],[2.6,0.2,0.0],g=>{
@@ -1101,74 +1116,82 @@ async function init(){
     g.add(place(box(1.0,.1,2.3,M.dark,.04),0,1.35,0));
     g.add(place(box(.15,.07,.8,M.silver,.03),0,1.45,0));
     g.add(place(box(.88,.9,2.1,M.water,.05),0,-.85,0));
-    g.add(place(box(.12,.5,.4,M.dark,.03),-.56,-.9,0));
-  });
-  part('pump',[0.55,-1.35,-1.0],[1.0,-0.6,-1.3],g=>{
-    g.add(place(cyl(.22,.22,.8,M.dark),0,0,0,0,0,Math.PI/2));
-    g.add(place(cyl(.16,.16,.3,M.silver),.5,0,0,0,0,Math.PI/2));
-    g.add(place(cyl(.16,.16,.3,M.silver),-.5,0,0,0,0,Math.PI/2));
-  });
-  part('boiler',[-0.7,-1.4,-1.0],[-1.5,-0.7,-1.3],g=>{
-    g.add(place(cyl(.3,.3,.85,M.silver),0,0,0));
-    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,.2,0,Math.PI/2));
-    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,-.2,0,Math.PI/2));
-  });
-  part('grounds',[-0.7,-0.75,0.8],[-0.7,-0.4,1.9],g=>{
-    g.add(place(box(1.1,.6,1.2,M.dark,.07),0,0,0));
-    g.add(place(box(.9,.05,.9,M.silver,.02),0,.33,0));
-  });
-  part('drip',[0,-1.8,1.0],[0,-0.9,2.0],g=>{
-    g.add(place(box(2.9,.22,1.7,M.dark,.07),0,0,0));
-    for(let i=-4;i<=4;i++)g.add(place(box(.08,.05,1.4,M.silver,.02),i*.3,.14,0));
-  });
-  part('panel',[0,1.5,1.85],[0,0.6,2.3],g=>{
-    g.add(place(box(3.0,1.1,.2,M.dark,.08),0,0,0));
-    g.add(place(box(1.2,.42,.04,M.black,.03),-.6,.06,.11));
-    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(1.0,.2),new THREE.MeshBasicMaterial({map:brandTex,transparent:true})),-.6,.43,.121));
-    g.add(place(cyl(.3,.3,.1,M.silver),.95,.05,.12,Math.PI/2));
-    for(let i=0;i<4;i++)g.add(place(cyl(.08,.08,.05,M.steel,24),-1.05+i*.35,-.33,.11,Math.PI/2));
-    g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.035,12,12),M.led),1.3,.38,.12));
-  });
-  part('spout',[0,0.9,1.3],[0,0.4,1.7],g=>{
-    g.add(place(cyl(.2,.2,.4,M.silver),0,.1,0));
-    g.add(place(cyl(.08,.08,.3,M.steel),0,-.18,0));
   });
   part('filter',[2.05,-1.35,-0.6],[3.4,-0.5,0.9],g=>{
     g.add(place(cyl(.2,.2,.5,new THREE.MeshStandardMaterial({color:0xe6e8ec,metalness:.1,roughness:.4})),0,0,0));
     g.add(place(cyl(.22,.22,.1,M.dark,32),0,.3,0));
     g.add(place(cyl(.12,.12,.12,M.steel,24),0,-.3,0));
   });
-  part('frother',[1.1,0.4,1.3],[2.0,-0.2,1.5],g=>{
-    g.add(place(cyl(.06,.06,.6,M.silver,20),0,.15,0));
-    g.add(place(cyl(.09,.09,.12,M.dark,20),0,.45,0));
-    g.add(place(cyl(.13,.13,.4,M.silver,32),0,-.25,0));
-    g.add(place(cyl(.045,.045,.18,M.steel,16),0,-.54,0));
-    g.add(place(cyl(.15,.15,.05,M.black,32),0,-.12,0));
+  part('pump',[0.6,-1.45,-1.0],[1.0,-0.6,-1.3],g=>{
+    g.add(place(cyl(.22,.22,.8,M.dark),0,0,0,0,0,Math.PI/2));
+    g.add(place(cyl(.16,.16,.3,M.silver),.5,0,0,0,0,Math.PI/2));
+    g.add(place(cyl(.16,.16,.3,M.silver),-.5,0,0,0,0,Math.PI/2));
   });
-  part('milk',[-2.05,-1.15,0.3],[-2.6,-0.2,0.9],g=>{
-    const milkM=new THREE.MeshStandardMaterial({color:0xf3efe6,metalness:0,roughness:.5,transparent:true,opacity:.9});
-    g.add(place(box(.9,1.6,1.1,M.glass,.08),0,0,0));
-    g.add(place(box(.8,.8,1.0,milkM,.05),0,-.35,0));
-    g.add(place(box(.95,.12,1.15,M.silver,.05),0,.86,0));
-    g.add(place(cyl(.07,.07,.2,M.steel,16),0,1.0,0));
-    g.add(place(box(.14,.9,.14,M.dark,.05),.55,0,.4));
+  part('boiler',[-0.7,-1.55,-1.0],[-1.5,-0.7,-1.3],g=>{
+    g.add(place(cyl(.3,.3,.85,M.silver),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,.2,0,Math.PI/2));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,-.2,0,Math.PI/2));
   });
-  part('valve',[-0.1,-1.0,-1.0],[0.1,-0.5,-1.7],g=>{
+  part('valve',[-0.05,-1.15,-1.0],[0.1,-0.5,-1.7],g=>{
     g.add(place(box(.38,.3,.3,M.steel,.04),0,0,0));
     g.add(place(cyl(.14,.14,.36,M.copper,28),0,.32,0));
     g.add(place(cyl(.06,.06,.5,M.silver,16),0,0,0,0,0,Math.PI/2));
   });
-  part('board',[-0.6,0.7,-1.74],[0,0.5,-2.0],g=>{
-    g.add(place(box(1.1,1.0,.05,M.pcb,.02),0,0,0));
-    for(const [x,y,w,h] of [[-.25,.2,.28,.28],[.2,.25,.2,.2],[.25,-.15,.3,.2],[-.3,-.25,.22,.22]])g.add(place(box(w,h,.07,M.chip,.01),x,y,.05));
-    for(let i=0;i<4;i++)g.add(place(cyl(.06,.06,.12,M.silver,16),-.4+i*.16,-.42,.07,Math.PI/2));
-    g.add(place(box(.4,.12,.1,M.black,.01),.3,.42,.06));
+  part('board',[0.5,0.5,-1.74],[0,0.5,-2.0],g=>{
+    g.add(place(box(1.3,1.2,.05,M.pcb,.02),0,0,0));
+    for(const [x,y,w,h] of [[-.3,.25,.32,.32],[.25,.3,.22,.22],[.3,-.2,.34,.22],[-.35,-.3,.24,.24]])g.add(place(box(w,h,.07,M.chip,.01),x,y,.05));
+    for(let i=0;i<5;i++)g.add(place(cyl(.06,.06,.12,M.silver,16),-.5+i*.17,-.5,.07,Math.PI/2));
+    g.add(place(box(.45,.12,.1,M.black,.01),.35,.52,.06));
+  });
+  part('grounds',[-0.7,-1.35,0.8],[-0.7,-0.4,1.9],g=>{
+    g.add(place(box(1.1,.6,1.2,M.dark,.07),0,0,0));
+    g.add(place(box(.9,.05,.9,M.silver,.02),0,.33,0));
+  });
+  part('drip',[0,-1.85,1.4],[0,-1.0,2.0],g=>{
+    g.add(place(box(3.0,.22,2.9,M.black,.07),0,0,0));
+    for(let i=-4;i<=4;i++)g.add(place(box(.1,.05,1.5,M.silver,.02),i*.3,.14,.1));
+    g.add(place(cyl(.42,.38,.75,M.cup,40),.25,.5,.05));
+    g.add(place(cyl(.34,.34,.4,M.coffee,40),.25,.36,.05));
+    g.add(place(cyl(.34,.34,.12,M.foam,40),.25,.62,.05));
+  });
+  part('panel',[0,1.62,1.62],[0,0.9,2.3],g=>{
+    g.rotation.x=-0.22;
+    g.add(place(box(3.0,.8,.16,M.gloss,.07),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(2.4,.62),new THREE.MeshBasicMaterial({map:screenTex})),0,0,.085));
+    for(const x of [-1.38,1.38])g.add(place(cyl(.07,.07,.04,M.silver,24),x,0,.09,Math.PI/2));
+  });
+  part('spout',[0.25,0.55,1.3],[0,0.3,1.9],g=>{
+    g.add(place(box(1.0,1.15,.75,M.chrome,.09),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.8,.16),new THREE.MeshBasicMaterial({map:brandTex,transparent:true})),0,.3,.381));
+    g.add(place(cyl(.09,.09,.35,M.steel,24),-.18,-.72,.05));
+    g.add(place(cyl(.09,.09,.35,M.steel,24),.18,-.72,.05));
+    g.add(place(cyl(.04,.04,.12,M.black,16),0,-.62,.1));
+  });
+  part('front',[0,0.25,1.62],[0,0.2,2.8],g=>{
+    g.add(place(box(1.25,1.9,.14,M.side,.05),-.875,0,0));
+    g.add(place(box(.75,1.9,.14,M.side,.05),1.125,0,0));
+    g.add(place(box(1.5,1.6,.1,M.side,.04),.65,-1.15,-1.02));
+  });
+  part('frother',[-0.4,0.35,1.5],[-1.0,-0.2,1.9],g=>{
+    g.scale.setScalar(.85);
+    g.add(place(cyl(.06,.06,.6,M.silver,20),0,.15,0));
+    g.add(place(cyl(.09,.09,.12,M.dark,20),0,.45,0));
+    g.add(place(cyl(.13,.13,.4,M.silver,32),0,-.25,0));
+    g.add(place(cyl(.045,.045,.18,M.steel,16),0,-.54,0));
+  });
+  part('milk',[-0.95,-0.78,2.15],[-1.9,-0.2,1.5],g=>{
+    const milkM=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x9a9690,emissiveIntensity:.5,metalness:0,roughness:.5,transparent:true,opacity:.95});
+    g.add(place(cyl(.55,.55,1.9,M.glass,48),0,0,0));
+    g.add(place(cyl(.5,.5,1.0,milkM,48),0,-.42,0));
+    g.add(place(cyl(.59,.59,.2,M.dark,48),0,1.05,0));
+    g.add(place(cyl(.2,.2,.18,M.black,32),0,1.24,0));
+    g.add(place(cyl(.07,.07,.3,M.steel,16),.42,.95,0,0,0,Math.PI/2));
   });
   // body shell: back, left, right, base share the 'body' id
-  part('body',[0,0,-1.9],[0,0,-2.6],g=>g.add(place(box(3.0,4.2,.12,M.dark,.06),0,0,0)));
-  part('body',[-1.44,0,-0.05],[-2.4,0,0],g=>g.add(place(box(.12,4.2,3.75,M.dark,.06),0,0,0)));
-  part('body',[1.44,0,-0.05],[2.4,0,0],g=>g.add(place(box(.12,4.2,3.75,M.dark,.06),0,0,0)));
-  part('body',[0,-2.1,0],[0,-1.7,0],g=>{g.add(place(box(3.0,.2,3.9,M.dark,.07),0,0,0));
+  part('body',[0,0.15,-1.85],[0,0,-2.6],g=>g.add(place(box(3.0,4.3,.12,M.dark,.06),0,0,0)));
+  part('body',[-1.44,0.15,-0.05],[-2.4,0,0],g=>g.add(place(box(.12,4.3,3.5,M.side,.06),0,0,0)));
+  part('body',[1.44,0.15,-0.05],[2.4,0,0],g=>{g.add(place(box(.12,4.3,3.5,M.side,.06),0,0,0));g.add(place(box(.02,2.2,2.0,M.gloss,.01),.07,-.2,0))});
+  part('body',[0,-2.1,0],[0,-1.7,0],g=>{g.add(place(box(3.0,.2,3.5,M.dark,.07),0,0,0));
     for(const x of [-1.2,1.2])for(const z of [-1.5,1.5])g.add(place(cyl(.16,.2,.1,M.black,20),x,-.15,z))});
 
   // ---- water hoses (rebuilt while parts move)
@@ -1181,10 +1204,10 @@ async function init(){
     {a:['filter',V(0,-.33,0),V(0,-1,0)],b:['pump',V(.55,0,0),V(1,0,0)],m:hoseCold},
     {a:['pump',V(-.55,0,0),V(-1,0,0)],b:['valve',V(.2,0,0),V(1,0,0)],m:hoseCold},
     {a:['valve',V(-.2,0,0),V(-1,0,0)],b:['boiler',V(0,-.43,0),V(0,-1,0)],m:hoseHot},
-    {a:['boiler',V(0,.43,0),V(0,1,0)],b:['brew',V(0,-1.05,.1),V(0,-1,0)],m:hoseHot},
-    {a:['brew',V(0,.1,.65),V(0,0,1)],b:['spout',V(0,.3,0),V(0,1,0)],m:hoseHot},
+    {a:['boiler',V(0,.43,0),V(0,1,0)],b:['brew',V(0,-.77,.1),V(0,-1,0)],m:hoseHot},
+    {a:['brew',V(0,.1,.65),V(0,0,1)],b:['spout',V(.1,.57,0),V(0,1,0)],m:hoseHot},
     {a:['boiler',V(.28,.1,0),V(1,0,0)],b:['frother',V(0,.5,0),V(0,1,0)],m:hoseHot},
-    {a:['milk',V(0,1.1,0),V(0,1,0)],b:['spout',V(-.18,.1,0),V(-1,0,0)],m:hoseMilk}
+    {a:['milk',V(.6,.95,0),V(1,0,0)],b:['spout',V(-.5,.0,.1),V(-1,0,0)],m:hoseMilk}
   ];
   const hoseMeshes=HOSES.map(h=>{const m=new THREE.Mesh(new THREE.BufferGeometry(),h.m.clone());m.userData.pid='hoses';scene.add(m);h.mesh=m;return m});
   function buildHoses(){
@@ -1263,7 +1286,7 @@ async function init(){
     }
     if(prog!==lastProg){buildHoses();lastProg=prog}
     // camera distance follows explosion progress
-    const dCol=distFor(7.0,8.4),dExp=distFor(13.2,14.2),d=THREE.MathUtils.lerp(dCol,dExp,ease(prog));
+    const dCol=distFor(7.2,8.6),dExp=distFor(13.4,14.4),d=THREE.MathUtils.lerp(dCol,dExp,ease(prog));
     tmp.copy(camera.position).sub(controls.target);tmp.setLength(d);camera.position.copy(controls.target).add(tmp);
     // keep machine centered vertically as it explodes
     controls.target.y=THREE.MathUtils.lerp(.7,1.05,prog);
