@@ -1018,8 +1018,8 @@ async function init(){
   };
   const ORDER=['hopper','funnel','grinder','chute','brew','chamber','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','front','spout','cover','body'];
   const UI={
-    ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Наведите или нажмите на деталь, чтобы увидеть, что это',call:'Здесь кофе смешивается с водой',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
-    uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Nima ekanini ko\'rish uchun detalga olib boring yoki bosing',call:'Bu yerda kofe suv bilan aralashadi',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
+    ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы приблизить и узнать, что это',call:'Здесь кофе смешивается с водой',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
+    uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Yaqinlashtirish va nima ekanini bilish uchun detalga bosing',call:'Bu yerda kofe suv bilan aralashadi',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
   };
 
   const stage=host;
@@ -1286,7 +1286,7 @@ async function init(){
   // ---- UI
   const btn=document.getElementById('xvBtn'),hint=document.getElementById('xvHint');
   let sel=null,hov=null,goal=0,prog=0,hovT=null;
-  const active=()=>sel||hov;
+  const active=()=>sel;
   function fillCall(){const id=active();if(!id)return;const d=PARTS[id][LANG()];const i=d[1].indexOf('. ');const first=i>0?d[1].slice(0,i+1):d[1];call.innerHTML='<b></b><span></span>';call.firstChild.textContent=d[0];call.lastChild.textContent=first}
   function refresh(){const l=LANG(),u=UI[l];btn.textContent=goal?u.b2:u.b1;hint.textContent=goal?u.h2:u.h1;fillCall()}
   window.__xv=refresh;
@@ -1317,10 +1317,10 @@ async function init(){
     if(!down)return;const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y);down=null;
     if(moved>6)return;
     const id=pick(e);
-    if(!goal){if(id)toggle(true)}else{if(id){select(sel===id?null:id)}else{toggle(false)}}
+    if(!goal){if(id)toggle(true)}else{if(id){select(sel===id?null:id)}else if(sel){select(null)}else{toggle(false)}}
   });
-  el.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||down)return;const hid=pick(e);if(goal&&prog>.6)setHover(hid);el.style.cursor=hid?'pointer':'grab'});
-  el.addEventListener('pointerleave',()=>setHover(null));
+  el.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||down)return;el.style.cursor=pick(e)?'pointer':'grab'});
+  
 
   // ---- layout
   function layout(){
@@ -1350,8 +1350,8 @@ async function init(){
     animDrops(now/1000,prog>.6);
     if(prog!==lastProg){buildHoses();lastProg=prog;const hv=prog>.02;for(const hm of hoseMeshes)hm.visible=hv}
     // camera distance follows explosion progress
-    const act=active();let fdist=0;
-    if(act&&prog>.6){bb.makeEmpty();for(const it of items)if(it.id===act)bb.expandByObject(it.group);if(bb.isEmpty()){chPos.set(0,0,0)}else{bb.getCenter(chPos);bb.getSize(sz);fdist=THREE.MathUtils.clamp(sz.length()*1.9,3.4,13)}}
+    const act=active();let fdist=0;const dBaseNow=THREE.MathUtils.lerp(distFor(7.2,8.6),distFor(13.4,14.4),ease(prog));
+    if(act&&prog>.6){bb.makeEmpty();for(const it of items)if(it.id===act)bb.expandByObject(it.group);if(bb.isEmpty()){chPos.set(0,0,0)}else{bb.getCenter(chPos);bb.getSize(sz);fdist=Math.min(THREE.MathUtils.clamp(sz.length()*1.9,3.4,40),dBaseNow*.8)}}
     focus+=((act&&prog>.6&&fdist?1:0)-focus)*(1-Math.exp(-dt*4));
     const dCol=distFor(7.2,8.6),dExp=distFor(13.4,14.4),dBase=THREE.MathUtils.lerp(dCol,dExp,ease(prog)),d=THREE.MathUtils.lerp(dBase,fdist||dBase,focus);
     defT.set(0,THREE.MathUtils.lerp(.7,1.05,prog),0);controls.target.lerpVectors(defT,chPos,focus);
