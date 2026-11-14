@@ -1021,7 +1021,7 @@ async function init(){
     hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Медные участки — горячая вода и пар, белая трубка — молоко, серая — слив воды в поддон. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv va bug\' uchun, oq quvur sut uchun, kulrang quvur suvni trayga to\'kish uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
     d_head:{ru:['Корпус насадки','Корпус с шарниром и колёсами. Шарнир и подшипники изнашиваются: насадка клинит или плохо поворачивается.'],uz:['Nasadka korpusi','Sharnir va g\'ildirakli korpus. Sharnir va podshipniklar eskiradi: nasadka qisilib qoladi yoki yomon buriladi.']},
     d_roller:{ru:['Щётка-валик','Мягкий валик собирает крупный мусор и пыль с пола. Намотавшиеся волосы тормозят вращение, валик нужно регулярно чистить.'],uz:['Cho\'tka-valik','Yumshoq valik poldagi katta axlat va changni yig\'adi. O\'ralib qolgan sochlar aylanishni sekinlashtiradi, valikni muntazam tozalash kerak.']},
-    d_laser:{ru:['Лазерная подсветка','Зелёный лазер подсвечивает мельчайшую пыль на твёрдых полах. Загрязнение линзы делает подсветку тусклой.'],uz:['Lazer yoritgich','Yashil lazer qattiq polda eng mayda changni yoritadi. Linza ifloslansa, yorug\'lik xira bo\'ladi.']},
+    d_laser:{ru:['Лазерная подсветка','Зелёный лазер подсвечивает мельчайшую пыль на твёрдых полах. Внутри — плата управления и провода питания. Загрязнение линзы делает подсветку тусклой.'],uz:['Lazer yoritgich','Yashil lazer qattiq polda eng mayda changni yoritadi. Ichida boshqaruv platasi va quvvat simlari bor. Linza ifloslansa, yorug\'lik xira bo\'ladi.']},
     d_wand:{ru:['Трубка','Передаёт воздушный поток и питание к насадке. Контакты окисляются или засоряются, и насадка перестаёт работать.'],uz:['Quvur','Havo oqimi va quvvatni nasadkaga uzatadi. Kontaktlar oksidlansa yoki tiqilsa, nasadka ishlamay qoladi.']},
     d_bin:{ru:['Контейнер для пыли','Прозрачный контейнер собирает мусор. Переполнение снижает мощность. Опорожняется одним движением рычага.'],uz:['Chang idishi','Shaffof idish axlatni yig\'adi. To\'lib ketsa, quvvat pasayadi. Tutqichni bir harakat bilan bo\'shatiladi.']},
     d_cyclone:{ru:['Циклонные конусы','Спрятаны внутри жёлтого циклонного блока: конусы закручивают воздух и отделяют пыль, которая падает в контейнер. Налипшая грязь снижает эффективность.'],uz:['Siklon konuslari','Sariq siklon bloki ichida yashirin: konuslar havoni aylantirib changni ajratadi, chang idishga tushadi. Yopishgan kir samaradorlikni pasaytiradi.']},
@@ -1371,6 +1371,15 @@ async function init(){
   part('d_laser',[-0.8,0.13,0.68],[-0.4,0.9,1.7],g=>{
     g.add(place(box(.2,.09,.1,M.dyLaser,.02),0,0,0));
     g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.07,16,16),M.dyLaser),0,0,.05));
+    // control board + wires (hidden inside the head when assembled)
+    g.add(place(box(.55,.03,.34,M.pcb,.01),.05,.0,-.78));
+    for(const [x,z,w,d] of [[-.08,-.8,.14,.12],[.12,-.72,.1,.1],[.2,-.86,.12,.08]])g.add(place(box(w,.04,d,M.chip,.005),x,.035,z));
+    g.add(place(box(.12,.05,.06,M.black,.005),-.2,.04,-.7));
+    const wireCols=[0xd8352a,0x15161a,0xe9c21a];
+    wireCols.forEach((c,i)=>{
+      const sx=-.12+i*.07,curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx,.02,-.62),new THREE.Vector3(sx-.02,-.02,-.45+i*.02),new THREE.Vector3(sx*.5,.0,-.2),new THREE.Vector3(i*.015-.015,.0,-.04)]);
+      g.add(new THREE.Mesh(new THREE.TubeGeometry(curve,24,.011,8,false),new THREE.MeshStandardMaterial({color:c,metalness:.1,roughness:.5})));
+    });
     const FY=-0.1,A=[0,FY,0.05],B=[-2.0,FY,2.3],C=[-0.1,FY,2.7];
     const gc=document.createElement('canvas');gc.width=64;gc.height=128;const gx=gc.getContext('2d');
     const gg=gx.createLinearGradient(0,0,0,128);gg.addColorStop(0,'rgba(90,255,140,.65)');gg.addColorStop(.5,'rgba(70,240,120,.22)');gg.addColorStop(1,'rgba(60,230,110,0)');gx.fillStyle=gg;gx.fillRect(0,0,64,128);
