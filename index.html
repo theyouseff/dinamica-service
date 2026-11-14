@@ -320,7 +320,9 @@ footer{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(2
 .xv-info p{color:var(--muted)}
 
 /* callout */
-.xv-call{position:absolute;transform:translate(-50%,-135%);padding:9px 16px;border-radius:99px;background:rgba(240,243,247,.96);color:#0b0b0d;font:600 13px var(--body);white-space:nowrap;pointer-events:none;box-shadow:0 0 24px rgba(217,220,225,.5);z-index:4}
+.xv-call{position:absolute;transform:translate(-50%,-112%);width:max-content;max-width:min(270px,82%);padding:11px 16px 12px;border-radius:18px;background:rgba(240,243,247,.97);color:#0b0b0d;text-align:center;pointer-events:none;box-shadow:0 0 28px rgba(217,220,225,.45);z-index:4}
+.xv-call b{display:block;font:600 14px var(--display);letter-spacing:.02em}
+.xv-call span{display:block;margin-top:3px;font:400 12.5px/1.4 var(--body);color:#33363c}
 .xv-call::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:inherit;transform:translateX(-50%) rotate(45deg)}
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
@@ -569,8 +571,6 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,56px);let
       <div class="xv-hint" id="xvHint"></div>
     </div>
     <div class="xv-ctrl reveal"><button type="button" class="btn fill" id="xvBtn"></button></div>
-    <div class="xv-legend" id="xvLegend"></div>
-    <div class="xv-info" id="xvInfo"><b></b><p></p></div>
   </div>
 </section>
 
@@ -1018,8 +1018,8 @@ async function init(){
   };
   const ORDER=['hopper','funnel','grinder','chute','brew','chamber','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','front','spout','cover','body'];
   const UI={
-    ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы узнать подробнее',call:'Здесь кофе смешивается с водой',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
-    uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Batafsil bilish uchun detalga bosing',call:'Bu yerda kofe suv bilan aralashadi',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
+    ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Наведите или нажмите на деталь, чтобы увидеть, что это',call:'Здесь кофе смешивается с водой',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
+    uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Nima ekanini ko\'rish uchun detalga olib boring yoki bosing',call:'Bu yerda kofe suv bilan aralashadi',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
   };
 
   const stage=host;
@@ -1284,32 +1284,26 @@ async function init(){
   const call=document.createElement('div');call.className='xv-call';call.hidden=true;stage.appendChild(call);
 
   // ---- UI
-  const legend=document.getElementById('xvLegend'),info=document.getElementById('xvInfo'),btn=document.getElementById('xvBtn'),hint=document.getElementById('xvHint');
-  ORDER.forEach((id,i)=>{const c=document.createElement('button');c.type='button';c.className='xv-chip';c.dataset.id=id;c.innerHTML='<i>'+(i+1)+'</i><span></span>';legend.appendChild(c);
-    c.onclick=()=>{if(prog<.5)toggle(true);select(sel===id?null:id)};
-    c.onmouseenter=()=>setHover(id);c.onmouseleave=()=>setHover(null)});
-
-  let sel=null,hov=null,goal=0,prog=0;
-  function refresh(){
-    const l=LANG(),u=UI[l];
-    legend.querySelectorAll('.xv-chip').forEach(c=>{c.querySelector('span').textContent=PARTS[c.dataset.id][l][0];c.classList.toggle('on',c.dataset.id===sel)});
-    const d=sel?PARTS[sel][l]:[u.i0,u.i0p];info.querySelector('b').textContent=d[0];info.querySelector('p').textContent=d[1];
-    btn.textContent=goal?u.b2:u.b1;hint.textContent=goal?u.h2:u.h1;call.textContent=u.call;
-  }
+  const btn=document.getElementById('xvBtn'),hint=document.getElementById('xvHint');
+  let sel=null,hov=null,goal=0,prog=0,hovT=null;
+  const active=()=>sel||hov;
+  function fillCall(){const id=active();if(!id)return;const d=PARTS[id][LANG()];const i=d[1].indexOf('. ');const first=i>0?d[1].slice(0,i+1):d[1];call.innerHTML='<b></b><span></span>';call.firstChild.textContent=d[0];call.lastChild.textContent=first}
+  function refresh(){const l=LANG(),u=UI[l];btn.textContent=goal?u.b2:u.b1;hint.textContent=goal?u.h2:u.h1;fillCall()}
   window.__xv=refresh;
   function paint(){
-    for(const hm of hoseMeshes){const on=(sel==='hoses'||hov==='hoses');hm.material.emissive.setHex(on?0x9aa0ab:0x000000);hm.material.emissiveIntensity=on?.9:0}
+    const act=active();
+    for(const hm of hoseMeshes){const on=(act==='hoses');hm.material.emissive.setHex(on?0x9aa0ab:0x000000);hm.material.emissiveIntensity=on?.9:0}
     for(const it of items){
-      const on=(it.id===sel||it.id===hov),ghost=!!sel&&it.id!==sel&&!on;
+      const on=it.id===act,ghost=!!act&&!on;
       it.group.traverse(o=>{if(!o.isMesh)return;const mt=o.material;
         if(!mt.userData.o)mt.userData.o={t:mt.transparent,op:mt.opacity,dw:mt.depthWrite};
         const og=mt.userData.o;mt.transparent=ghost?true:og.t;mt.opacity=ghost?Math.min(.12,og.op):og.op;mt.depthWrite=ghost?false:og.dw;mt.needsUpdate=true;
         if(mt.emissive){mt.emissive.setHex(on?0x8a8f99:0x000000);mt.emissiveIntensity=on?.9:0}});
     }
   }
-  function select(id){sel=id;paint();refresh()}
-  function setHover(id){if(hov!==id){hov=id;paint()}}
-  function toggle(v){goal=(v===undefined?(goal?0:1):(v?1:0));if(!goal)sel=null,paint();refresh()}
+  function select(id){sel=id;paint();fillCall()}
+  function setHover(id){clearTimeout(hovT);if(id){if(hov!==id){hov=id;paint();fillCall()}}else if(hov){hovT=setTimeout(()=>{hov=null;paint()},380)}}
+  function toggle(v){goal=(v===undefined?(goal?0:1):(v?1:0));if(!goal){sel=null;hov=null;}paint();refresh()}
   btn.onclick=()=>toggle();
 
   // ---- interaction: click vs drag
@@ -1323,9 +1317,9 @@ async function init(){
     if(!down)return;const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y);down=null;
     if(moved>6)return;
     const id=pick(e);
-    if(!goal){if(id)toggle(true)}else{if(id){select(id)}else{toggle(false)}}
+    if(!goal){if(id)toggle(true)}else{if(id){select(sel===id?null:id)}else{toggle(false)}}
   });
-  el.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||down)return;if(goal)setHover(pick(e));el.style.cursor=pick(e)?'pointer':'grab'});
+  el.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||down)return;const hid=pick(e);if(goal&&prog>.6)setHover(hid);el.style.cursor=hid?'pointer':'grab'});
   el.addEventListener('pointerleave',()=>setHover(null));
 
   // ---- layout
@@ -1339,7 +1333,7 @@ async function init(){
   const ease=x=>1-Math.pow(1-x,3);
 
   // ---- loop
-  let visible=true,last=performance.now(),lastProg=-1,focus=0;const defT=new THREE.Vector3(),chPos=new THREE.Vector3();
+  let visible=true,last=performance.now(),lastProg=-1,focus=0;const defT=new THREE.Vector3(),chPos=new THREE.Vector3(),bb=new THREE.Box3(),sz=new THREE.Vector3();
   new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
   const tmp=new THREE.Vector3();
   function frame(now){
@@ -1354,17 +1348,19 @@ async function init(){
       it.group.position.copy(it.base).addScaledVector(it.dir,k);
     }
     animDrops(now/1000,prog>.6);
-    if(sel==='chamber'&&prog>.6){tmp.set(0,.75,0);chG.localToWorld(tmp);tmp.project(camera);const r=el.getBoundingClientRect();call.style.left=((tmp.x+1)/2*r.width)+'px';call.style.top=((1-tmp.y)/2*r.height)+'px';call.hidden=false}else call.hidden=true;
     if(prog!==lastProg){buildHoses();lastProg=prog;const hv=prog>.02;for(const hm of hoseMeshes)hm.visible=hv}
     // camera distance follows explosion progress
-    focus+=((sel==='chamber'&&prog>.6?1:0)-focus)*(1-Math.exp(-dt*4));
-    const dCol=distFor(7.2,8.6),dExp=distFor(13.4,14.4),d=THREE.MathUtils.lerp(dCol,dExp,ease(prog))*THREE.MathUtils.lerp(1,.4,focus);
-    defT.set(0,THREE.MathUtils.lerp(.7,1.05,prog),0);chPos.set(0,0,0);chG.localToWorld(chPos);controls.target.lerpVectors(defT,chPos,focus);
+    const act=active();let fdist=0;
+    if(act&&prog>.6){bb.makeEmpty();for(const it of items)if(it.id===act)bb.expandByObject(it.group);if(bb.isEmpty()){chPos.set(0,0,0)}else{bb.getCenter(chPos);bb.getSize(sz);fdist=THREE.MathUtils.clamp(sz.length()*1.9,3.4,13)}}
+    focus+=((act&&prog>.6&&fdist?1:0)-focus)*(1-Math.exp(-dt*4));
+    const dCol=distFor(7.2,8.6),dExp=distFor(13.4,14.4),dBase=THREE.MathUtils.lerp(dCol,dExp,ease(prog)),d=THREE.MathUtils.lerp(dBase,fdist||dBase,focus);
+    defT.set(0,THREE.MathUtils.lerp(.7,1.05,prog),0);controls.target.lerpVectors(defT,chPos,focus);
     tmp.copy(camera.position).sub(controls.target);tmp.setLength(d);camera.position.copy(controls.target).add(tmp);
     // keep machine centered vertically as it explodes
     if(!down&&!controls.autoRotate&&!reduce&&performance.now()-idleT>2500&&idleT)controls.autoRotate=true;
     controls.autoRotateSpeed=goal?.5:1.1;
     controls.update();
+    if(act&&prog>.6&&fdist){tmp.set(chPos.x,bb.max.y+.1,chPos.z);tmp.project(camera);const r=el.getBoundingClientRect();call.style.left=Math.max(120,Math.min(r.width-120,(tmp.x+1)/2*r.width))+'px';call.style.top=Math.max(70,(1-tmp.y)/2*r.height)+'px';call.hidden=false}else call.hidden=true;
     renderer.render(scene,camera);
   }
   refresh();requestAnimationFrame(frame);
