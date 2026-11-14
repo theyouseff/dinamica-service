@@ -1181,7 +1181,7 @@ async function init(){
     for(let i=0;i<5;i++)g.add(place(cyl(.06,.06,.12,M.silver,16),-.5+i*.17,-.5,.07,Math.PI/2));
     g.add(place(box(.45,.12,.1,M.black,.01),.35,.52,.06));
   });
-  part('ejector',[-0.6,-0.8,0.15],[-0.9,-0.5,1.3],g=>{
+  part('ejector',[-0.6,-0.8,0.15],[-2.6,-0.3,0.6],g=>{
     g.add(place(box(.7,.06,1.3,M.steel,.02),0,0,0,.43));
     g.add(place(box(.05,.16,1.3,M.steel,.02),-.33,.07,0,.43));
     g.add(place(box(.05,.16,1.3,M.steel,.02),.33,.07,0,.43));
@@ -1282,8 +1282,14 @@ async function init(){
   const dropCoffee=new THREE.MeshStandardMaterial({color:0x6b4528,emissive:0x2a160a,emissiveIntensity:.6,metalness:0,roughness:.4});
   const drops=[];
   for(let i=0;i<26;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(.035,10,10),dropWater);const a=Math.random()*6.28,r=Math.sqrt(Math.random())*.2;m.userData={ph:Math.random(),x:Math.cos(a)*r,z:Math.sin(a)*r,sp:.35+Math.random()*.2};m.visible=false;chG.add(m);drops.push(m)}
+  // spent coffee pucks sliding down the ejector chute into the grounds container
+  const ejG=G('ejector'),pucks=[];
+  const puckM=new THREE.MeshStandardMaterial({color:0x4a2f1c,emissive:0x1e0f06,emissiveIntensity:.6,metalness:0,roughness:.9});
+  for(let i=0;i<4;i++){const m=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,.08,28),puckM);m.rotation.x=.43;m.userData={ph:i/4};m.visible=false;ejG.add(m);pucks.push(m)}
+  const EJD=new THREE.Vector3(0,-Math.sin(.43),Math.cos(.43));
   const PUCK=-0.02;
   function animDrops(t,show){
+    for(const pk of pucks){pk.visible=show;if(!show)continue;const u=(t*.2+pk.userData.ph)%1,sd=-.7+u*1.7;pk.position.set(0,.12,0).addScaledVector(EJD,sd);pk.scale.setScalar(u>.9?Math.max(.05,1-(u-.9)*10):1)}
     for(const d of drops){
       d.visible=show;if(!show)continue;
       const u=(t*d.userData.sp+d.userData.ph)%1,y=.5-u*1.0;
