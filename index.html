@@ -1024,7 +1024,7 @@ async function init(){
     d_laser:{ru:['Лазерная подсветка','Зелёный лазер подсвечивает мельчайшую пыль на твёрдых полах. Загрязнение линзы делает подсветку тусклой.'],uz:['Lazer yoritgich','Yashil lazer qattiq polda eng mayda changni yoritadi. Linza ifloslansa, yorug\'lik xira bo\'ladi.']},
     d_wand:{ru:['Трубка','Передаёт воздушный поток и питание к насадке. Контакты окисляются или засоряются, и насадка перестаёт работать.'],uz:['Quvur','Havo oqimi va quvvatni nasadkaga uzatadi. Kontaktlar oksidlansa yoki tiqilsa, nasadka ishlamay qoladi.']},
     d_bin:{ru:['Контейнер для пыли','Прозрачный контейнер собирает мусор. Переполнение снижает мощность. Опорожняется одним движением рычага.'],uz:['Chang idishi','Shaffof idish axlatni yig\'adi. To\'lib ketsa, quvvat pasayadi. Tutqichni bir harakat bilan bo\'shatiladi.']},
-    d_cyclone:{ru:['Шрауд и конусы','Внутри контейнера: шрауд и конусы направляют пыль в контейнер. Налипшая грязь снижает эффективность.'],uz:['Shroud va konuslar','Idish ichida: shroud va konuslar changni idishga yo\'naltiradi. Yopishgan kir samaradorlikni pasaytiradi.']},
+    d_cyclone:{ru:['Циклонные конусы','Спрятаны внутри жёлтого циклонного блока: конусы закручивают воздух и отделяют пыль, которая падает в контейнер. Налипшая грязь снижает эффективность.'],uz:['Siklon konuslari','Sariq siklon bloki ichida yashirin: konuslar havoni aylantirib changni ajratadi, chang idishga tushadi. Yopishgan kir samaradorlikni pasaytiradi.']},
     d_sensor:{ru:['Пьезодатчик','Считает частицы пыли и передаёт данные на экран. Загрязнение делает показания неточными.'],uz:['Pyezodatchik','Chang zarralarini sanaydi va ma\'lumotni ekranga uzatadi. Ifloslansa, ko\'rsatkichlar noaniq bo\'ladi.']},
     d_prefilter:{ru:['Предмоторный фильтр','Защищает двигатель от мелкой пыли. Его моют холодной водой раз в месяц и сушат сутки.'],uz:['Motor oldi filtri','Dvigatelni mayda changdan himoya qiladi. Oyiga bir marta sovuq suvda yuviladi va bir kun quritiladi.']},
     d_shell:{ru:['Корпус двигателя','Соединяет двигатель, фильтры и аккумулятор. Трещины и ослабленные крепления дают вибрацию и шум.'],uz:['Dvigatel korpusi','Dvigatel, filtrlar va akkumulyatorni birlashtiradi. Yoriq va bo\'shagan mahkamlagichlar tebranish va shovqin beradi.']},
@@ -1399,9 +1399,9 @@ async function init(){
     g.add(place(cyl(.47,.47,.08,M.dyNickel,48),0,.66,0));
     g.add(place(box(.12,.3,.1,M.dyRed,.03),0,-.7,.5));
   });
-  part('d_cyclone',[0,5.0,-0.28],[0,1.0,2.7],g=>{
-    for(let i=0;i<10;i++){const a=i/10*6.283;g.add(place(cyl(.1,.045,.55,M.dyNickel,20),Math.cos(a)*.34,.15,Math.sin(a)*.34))}
-    g.add(place(cyl(.38,.38,.06,M.dyDark,40),0,.45,0));
+  part('d_cyclone',[0,5.66,-0.28],[0,1.0,2.7],g=>{
+    for(let i=0;i<10;i++){const a=i/10*6.283;g.add(place(cyl(.1,.045,.46,M.dyNickel,20),Math.cos(a)*.3,0,Math.sin(a)*.3))}
+    g.add(place(cyl(.36,.36,.05,M.dyDark,40),0,.24,0));
   });
   part('d_sensor',[0,4.12,-0.28],[-2.4,-0.2,1.9],g=>{
     g.add(place(cyl(.26,.26,.14,M.dyDark,32),0,0,0));
