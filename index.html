@@ -570,7 +570,7 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,56px);let
     <div class="eyebrow reveal" data-i="xv_eye">3D</div>
     <h2 class="reveal" data-i="xv_h">Устройство кофемашины</h2>
     <p class="lead reveal" data-i="xv_p">Вращайте кофемашину и нажмите на неё, чтобы разобрать на детали. Так видно, из чего она состоит и что чаще всего требует ремонта.</p>
-    <div class="xv-tabs reveal"><button type="button" class="xv-tab on" data-m="coffee" data-i="xv_t1">Кофемашина</button><button type="button" class="xv-tab" data-m="dyson" data-i="xv_t2">Dyson V15</button></div>
+    <div class="xv-tabs reveal"><button type="button" class="xv-tab on" data-m="coffee" data-i="xv_t1">Кофемашина</button><button type="button" class="xv-tab" data-m="dyson" data-i="xv_t2">Dyson V15 Detect</button></div>
     <div class="xv reveal" id="xv" aria-label="3D">
       <div class="xv-hint" id="xvHint"></div>
     </div>
@@ -763,7 +763,7 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,56px);let
 
 <script>
 const T={
-ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За год работы помогли более чем 300 клиентам и вернули к жизни более 450 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',tr_eye:'Тарифы',tr_h:'Выберите свой тариф',tr_cur:'тыс. сум',tr_btn:'Выбрать',tr_pop:'Популярный',nav_plans:'Тарифы',tr_bronze1:'Диагностика устройства',tr_bronze2:'Чистка и обслуживание',tr_bronze3:'Гарантия на работы 1 месяц',tr_silver1:'Всё из тарифа Bronze',tr_silver2:'Замена расходных деталей',tr_silver3:'Ремонт основных узлов',tr_silver4:'Гарантия на работы 3 месяца',tr_gold1:'Всё из тарифа Silver',tr_gold2:'Сложный ремонт: платы и моторы',tr_gold3:'Приоритетная очередь',tr_gold4:'Гарантия на работы 6 месяцев',gr_up:'до',gr_unit:'месяцев гарантии',gr_eye:'Гарантия',gr_h:'Отвечаем за каждый ремонт',gr_p:'Если неисправность вернётся по причине выполненных нами работ, мы устраним её бесплатно. Срок гарантии зависит от выбранного тарифа: 1, 3 или 6 месяцев.',gr1:'Бесплатное устранение повторной неисправности',gr2:'Гарантия на работы и установленные детали',gr3:'Гарантийный талон выдаём на руки',gr4:'Проверяем технику перед выдачей',gr_btn:'Оставить заявку',fq_eye:'FAQ',fq_h:'Часто задаваемые вопросы',fq1:'Сколько времени занимает диагностика?',fa1:'Как правило, диагностика занимает не более одного рабочего дня. Точные сроки мы называем при приёме техники.',fq2:'Сколько стоит ремонт?',fa2:'Стоимость зависит от модели и характера неисправности. Мы называем цену после диагностики и начинаем работы только с вашего согласия.',fq3:'Технику каких брендов вы ремонтируете?',fa3:'Dyson, Dreame, Roborock, Xiaomi, Samsung, Philips, Braun, Thomas, Trouver, Smeg, Tefal, Krups, DeLonghi, Laurastar, Boneco. Если вашего бренда нет в списке, уточните у нас.',fq4:'Есть ли гарантия на ремонт?',fa4:'Да. Гарантия на работы действует от 1 до 6 месяцев в зависимости от выбранного тарифа. Гарантийный талон выдаём на руки.',fq5:'Что делать, если техника не включается?',fa5:'Не пытайтесь вскрывать устройство и не включайте его повторно: это может усугубить поломку. Привезите технику к нам, и мы проведём диагностику.',ft_cardh:'Быстрая заявка',ft_cardp:'Позвоните нам, и мы подскажем, что делать с вашей техникой.',ft_ch:'Свяжитесь с нами',ft_hh:'Режим работы',ft_h1:'Пн – Пт: 09:00 – 18:00',ft_h2:'Сб: 09:00 – 18:00',ft_h3:'Вс: выходной',ft_rights:'Все права защищены.',fm_eye:'Анкета',fm_h:'Оставьте заявку',fm_sub:'Заполните анкету, и мы свяжемся с вами.',fm_plan:'Тариф',fm_name:'Ваше имя',fm_phone:'Телефон',fm_dev:'Техника и бренд',fm_msg:'Что случилось?',fm_send:'Отправить в Telegram',fm_note:'Откроется Telegram с готовым сообщением, останется нажать «Отправить».',fm_err:'Укажите имя и телефон (минимум 9 цифр).',xv_eye:'3D',xv_h:'Устройство техники изнутри',xv_p:'Выберите технику, вращайте её и нажмите, чтобы разобрать на детали. Нажмите на деталь, чтобы увидеть, что это и что чаще всего требует ремонта.',xv_t1:'Кофемашина',xv_t2:'Dyson V15',nav_services:'Методика',nav_process:'Гайд',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке труда',st2u:'год',st3:'отремонтированной техники',
+ru:{nav_brands:'Бренды',a_eye:'О нас',a_h:'DINAMICA — сервисный центр,\nкоторому доверяют',a_p1:'Мы ремонтируем бытовую технику разных брендов, включая Dyson. За год работы помогли более чем 300 клиентам и вернули к жизни более 450 устройств.',a_p2:'Каждое устройство проходит диагностику, цену и сроки мы согласуем заранее, а после ремонта проверяем технику и даём гарантию на работы.',a_l1:'Прозрачные цены и сроки',a_l2:'Диагностика перед ремонтом',a_l3:'Гарантия на выполненные работы',nav_about:'О нас',r_eye:'Отзывы',r_h:'Что говорят наши клиенты',r_ph:'Здесь будет текст отзыва клиента.',r_nm:'Имя клиента',r_more:'Читать далее',r_less:'Свернуть',r_dv:'Устройство',nav_reviews:'Отзывы',g_eye:'Сегментация',g_h:'Для кого наши услуги',g1:'Тем, кто следит за чистотой',g1p:'Пылесосы, роботы-пылесосы и моющие модели: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.',g2:'Тем, кто заботится о себе',g2p:'Фены, стайлеры и техника для ухода: Dyson, Braun, Philips. Для дома, салонов и барбершопов.',g3:'Тем, кто ценит уют дома',g3p:'Кофемашины, кухонная техника, гладильные системы и климатическая техника: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.',wk_eye:'Работы',wk_h:'Наши работы',wk_b:'До',wk_a:'После',nav_works:'Работы',tr_eye:'Тарифы',tr_h:'Выберите свой тариф',tr_cur:'тыс. сум',tr_btn:'Выбрать',tr_pop:'Популярный',nav_plans:'Тарифы',tr_bronze1:'Диагностика устройства',tr_bronze2:'Чистка и обслуживание',tr_bronze3:'Гарантия на работы 1 месяц',tr_silver1:'Всё из тарифа Bronze',tr_silver2:'Замена расходных деталей',tr_silver3:'Ремонт основных узлов',tr_silver4:'Гарантия на работы 3 месяца',tr_gold1:'Всё из тарифа Silver',tr_gold2:'Сложный ремонт: платы и моторы',tr_gold3:'Приоритетная очередь',tr_gold4:'Гарантия на работы 6 месяцев',gr_up:'до',gr_unit:'месяцев гарантии',gr_eye:'Гарантия',gr_h:'Отвечаем за каждый ремонт',gr_p:'Если неисправность вернётся по причине выполненных нами работ, мы устраним её бесплатно. Срок гарантии зависит от выбранного тарифа: 1, 3 или 6 месяцев.',gr1:'Бесплатное устранение повторной неисправности',gr2:'Гарантия на работы и установленные детали',gr3:'Гарантийный талон выдаём на руки',gr4:'Проверяем технику перед выдачей',gr_btn:'Оставить заявку',fq_eye:'FAQ',fq_h:'Часто задаваемые вопросы',fq1:'Сколько времени занимает диагностика?',fa1:'Как правило, диагностика занимает не более одного рабочего дня. Точные сроки мы называем при приёме техники.',fq2:'Сколько стоит ремонт?',fa2:'Стоимость зависит от модели и характера неисправности. Мы называем цену после диагностики и начинаем работы только с вашего согласия.',fq3:'Технику каких брендов вы ремонтируете?',fa3:'Dyson, Dreame, Roborock, Xiaomi, Samsung, Philips, Braun, Thomas, Trouver, Smeg, Tefal, Krups, DeLonghi, Laurastar, Boneco. Если вашего бренда нет в списке, уточните у нас.',fq4:'Есть ли гарантия на ремонт?',fa4:'Да. Гарантия на работы действует от 1 до 6 месяцев в зависимости от выбранного тарифа. Гарантийный талон выдаём на руки.',fq5:'Что делать, если техника не включается?',fa5:'Не пытайтесь вскрывать устройство и не включайте его повторно: это может усугубить поломку. Привезите технику к нам, и мы проведём диагностику.',ft_cardh:'Быстрая заявка',ft_cardp:'Позвоните нам, и мы подскажем, что делать с вашей техникой.',ft_ch:'Свяжитесь с нами',ft_hh:'Режим работы',ft_h1:'Пн – Пт: 09:00 – 18:00',ft_h2:'Сб: 09:00 – 18:00',ft_h3:'Вс: выходной',ft_rights:'Все права защищены.',fm_eye:'Анкета',fm_h:'Оставьте заявку',fm_sub:'Заполните анкету, и мы свяжемся с вами.',fm_plan:'Тариф',fm_name:'Ваше имя',fm_phone:'Телефон',fm_dev:'Техника и бренд',fm_msg:'Что случилось?',fm_send:'Отправить в Telegram',fm_note:'Откроется Telegram с готовым сообщением, останется нажать «Отправить».',fm_err:'Укажите имя и телефон (минимум 9 цифр).',xv_eye:'3D',xv_h:'Устройство техники изнутри',xv_p:'Выберите технику, вращайте её и нажмите, чтобы разобрать на детали. Нажмите на деталь, чтобы увидеть, что это и что чаще всего требует ремонта.',xv_t1:'Кофемашина',xv_t2:'Dyson V15 Detect',nav_services:'Методика',nav_process:'Гайд',nav_contact:'Контакты',sc:'Сервисный центр',mq:'Список обслуживаемых брендов',st1:'довольных клиентов',st2:'на рынке труда',st2u:'год',st3:'отремонтированной техники',
 tag:'Профессиональный подход к вашей технике от профессионалов',
 cta1:'Оставить заявку',cta2:'Наши услуги',b_eye:'Бренды',b_h:'Специализация — Dyson. Чиним и другую технику.',
 b_dy:'Пылесосы, фены, стайлеры, очистители воздуха. Знаем устройство каждой модели.',b_oth:'Другие бренды',
@@ -777,7 +777,7 @@ p3:"Влага и падения",p3p:"Попадание воды, удары �
 w_eye:'Почему мы',w_h:'Внимание к деталям',w1:'Опыт',w1p:'Специализируемся на Dyson и знаем типичные поломки.',w2:'Прозрачность',w2p:'Цена и сроки согласуются заранее, без скрытых платежей.',
 w3:'Качество',w3p:'Проверяем технику после ремонта и даём гарантию на работы.',c_eye:'Контакты',c_h:'Свяжитесь с нами',c_p:'Расскажите о проблеме, и мы подскажем, что делать.',
 c_tel:'Телефон',c_adr:'Адрес',c_adr_v:'Адрес уточняется',c_hrs:'Режим работы',c_hrs_v:'Ежедневно, 09:00–18:00',c_call:'Позвонить',c_tg:'Написать в Telegram',foot:'Сервисный центр'},
-uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. Bir yil davomida 300 dan ortiq mijozga yordam berdik va 450 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',tr_eye:'Tariflar',tr_h:'O\'z tarifingizni tanlang',tr_cur:"ming so'm",tr_btn:'Tanlash',tr_pop:'Ommabop',nav_plans:'Tariflar',tr_bronze1:"Qurilma diagnostikasi",tr_bronze2:"Tozalash va xizmat",tr_bronze3:"Ishga 1 oy kafolat",tr_silver1:"Bronze tarifidagi hamma narsa",tr_silver2:"Sarflanadigan qismlarni almashtirish",tr_silver3:"Asosiy uzellarni ta'mirlash",tr_silver4:"Ishga 3 oy kafolat",tr_gold1:"Silver tarifidagi hamma narsa",tr_gold2:"Murakkab ta'mir: plata va motorlar",tr_gold3:"Navbatda ustuvorlik",tr_gold4:"Ishga 6 oy kafolat",gr_up:'6 oygacha',gr_unit:'kafolat',gr_eye:'Kafolat',gr_h:"Har bir ta'mir uchun javob beramiz",gr_p:"Nosozlik biz bajargan ishlar sababli qaytsa, uni bepul bartaraf etamiz. Kafolat muddati tanlangan tarifga bog'liq: 1, 3 yoki 6 oy.",gr1:"Takroriy nosozlikni bepul bartaraf etish",gr2:"Ishga va o'rnatilgan qismlarga kafolat",gr3:"Kafolat talonini qo'lingizga beramiz",gr4:"Topshirishdan oldin texnikani tekshiramiz",gr_btn:'Ariza qoldirish',fq_eye:'FAQ',fq_h:"Ko'p beriladigan savollar",fq1:"Diagnostika qancha vaqt oladi?",fa1:"Odatda diagnostika bir ish kunidan oshmaydi. Aniq muddatni texnikani qabul qilganda aytamiz.",fq2:"Ta'mirlash qancha turadi?",fa2:"Narx modelga va nosozlik turiga bog'liq. Narxni diagnostikadan keyin aytamiz va ishni faqat sizning roziligingiz bilan boshlaymiz.",fq3:"Qaysi brend texnikalarini ta'mirlaysiz?",fa3:"Dyson, Dreame, Roborock, Xiaomi, Samsung, Philips, Braun, Thomas, Trouver, Smeg, Tefal, Krups, DeLonghi, Laurastar, Boneco. Brendingiz ro'yxatda bo'lmasa, bizdan so'rang.",fq4:"Ta'mirga kafolat bormi?",fa4:"Ha. Ishga kafolat tanlangan tarifga qarab 1 dan 6 oygacha amal qiladi. Kafolat talonini qo'lingizga beramiz.",fq5:"Texnika yoqilmasa nima qilish kerak?",fa5:"Qurilmani o'zingiz ochishga urinmang va qayta-qayta yoqmang: bu nosozlikni kuchaytirishi mumkin. Texnikani bizga olib keling, diagnostika qilamiz.",ft_cardh:'Tezkor ariza',ft_cardp:"Bizga qo'ng'iroq qiling, texnikangiz bilan nima qilishni aytamiz.",ft_ch:"Biz bilan bog'laning",ft_hh:'Ish vaqti',ft_h1:'Du – Ju: 09:00 – 18:00',ft_h2:'Sh: 09:00 – 18:00',ft_h3:'Ya: dam olish kuni',ft_rights:'Barcha huquqlar himoyalangan.',fm_eye:'Anketa',fm_h:'Ariza qoldiring',fm_sub:"Anketani to'ldiring, biz siz bilan bog'lanamiz.",fm_plan:'Tarif',fm_name:'Ismingiz',fm_phone:'Telefon',fm_dev:'Texnika va brend',fm_msg:'Nima bo\'ldi?',fm_send:'Telegramga yuborish',fm_note:"Telegram tayyor xabar bilan ochiladi, faqat «Yuborish» ni bosish qoladi.",fm_err:"Ism va telefonni kiriting (kamida 9 raqam).",xv_eye:'3D',xv_h:'Texnikaning ichki tuzilishi',xv_t1:'Kofe mashinasi',xv_t2:'Dyson V15',xv_p:"Texnikani tanlang, aylantiring va detallarga ajratish uchun bosing. Nima ekanini va nima ko'proq ta'mir talab qilishini bilish uchun detalga bosing.",nav_services:'Metodika',nav_process:"Qo'llanma",nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'ish bozorida',st2u:'yil',st3:"ta'mirlangan texnika",
+uz:{nav_brands:'Brendlar',a_eye:'Biz haqimizda',a_h:'DINAMICA — ishonchli\nservis markazi',a_p1:"Biz turli brendlardagi maishiy texnikani, jumladan Dyson'ni ham ta'mirlaymiz. Bir yil davomida 300 dan ortiq mijozga yordam berdik va 450 dan ortiq qurilmani qayta ishga tushirdik.",a_p2:"Har bir qurilma diagnostikadan o'tadi, narx va muddatni oldindan kelishamiz, ta'mirdan keyin texnikani tekshirib, ishga kafolat beramiz.",a_l1:'Ochiq narx va muddat',a_l2:"Ta'mirdan oldin diagnostika",a_l3:'Bajarilgan ishga kafolat',nav_about:'Biz haqimizda',r_eye:'Fikrlar',r_h:'Mijozlarimiz nima deydi',r_ph:'Bu yerda mijoz fikri bo\'ladi.',r_nm:'Mijoz ismi',r_more:"Ko'proq o'qish",r_less:'Yopish',r_dv:'Qurilma',nav_reviews:'Fikrlar',g_eye:'Segmentatsiya',g_h:'Xizmatlarimiz kimlar uchun',g1:"Tozalikka e'tibor beradiganlar uchun",g1p:"Changyutgichlar, robot-changyutgichlar va yuvuvchi modellar: Dyson, Dreame, Roborock, Xiaomi, Thomas, Samsung.",g2:"O'ziga qaraydiganlar uchun",g2p:"Fen, stayler va parvarish texnikasi: Dyson, Braun, Philips. Uy, salon va barbershoplar uchun.",g3:"Uy qulayligini qadrlaydiganlar uchun",g3p:"Kofe mashinalar, oshxona texnikasi, dazmollash tizimlari va iqlim texnikasi: DeLonghi, Krups, Smeg, Tefal, Laurastar, Boneco.",wk_eye:'Ishlar',wk_h:'Bizning ishlarimiz',wk_b:'Oldin',wk_a:'Keyin',nav_works:'Ishlar',tr_eye:'Tariflar',tr_h:'O\'z tarifingizni tanlang',tr_cur:"ming so'm",tr_btn:'Tanlash',tr_pop:'Ommabop',nav_plans:'Tariflar',tr_bronze1:"Qurilma diagnostikasi",tr_bronze2:"Tozalash va xizmat",tr_bronze3:"Ishga 1 oy kafolat",tr_silver1:"Bronze tarifidagi hamma narsa",tr_silver2:"Sarflanadigan qismlarni almashtirish",tr_silver3:"Asosiy uzellarni ta'mirlash",tr_silver4:"Ishga 3 oy kafolat",tr_gold1:"Silver tarifidagi hamma narsa",tr_gold2:"Murakkab ta'mir: plata va motorlar",tr_gold3:"Navbatda ustuvorlik",tr_gold4:"Ishga 6 oy kafolat",gr_up:'6 oygacha',gr_unit:'kafolat',gr_eye:'Kafolat',gr_h:"Har bir ta'mir uchun javob beramiz",gr_p:"Nosozlik biz bajargan ishlar sababli qaytsa, uni bepul bartaraf etamiz. Kafolat muddati tanlangan tarifga bog'liq: 1, 3 yoki 6 oy.",gr1:"Takroriy nosozlikni bepul bartaraf etish",gr2:"Ishga va o'rnatilgan qismlarga kafolat",gr3:"Kafolat talonini qo'lingizga beramiz",gr4:"Topshirishdan oldin texnikani tekshiramiz",gr_btn:'Ariza qoldirish',fq_eye:'FAQ',fq_h:"Ko'p beriladigan savollar",fq1:"Diagnostika qancha vaqt oladi?",fa1:"Odatda diagnostika bir ish kunidan oshmaydi. Aniq muddatni texnikani qabul qilganda aytamiz.",fq2:"Ta'mirlash qancha turadi?",fa2:"Narx modelga va nosozlik turiga bog'liq. Narxni diagnostikadan keyin aytamiz va ishni faqat sizning roziligingiz bilan boshlaymiz.",fq3:"Qaysi brend texnikalarini ta'mirlaysiz?",fa3:"Dyson, Dreame, Roborock, Xiaomi, Samsung, Philips, Braun, Thomas, Trouver, Smeg, Tefal, Krups, DeLonghi, Laurastar, Boneco. Brendingiz ro'yxatda bo'lmasa, bizdan so'rang.",fq4:"Ta'mirga kafolat bormi?",fa4:"Ha. Ishga kafolat tanlangan tarifga qarab 1 dan 6 oygacha amal qiladi. Kafolat talonini qo'lingizga beramiz.",fq5:"Texnika yoqilmasa nima qilish kerak?",fa5:"Qurilmani o'zingiz ochishga urinmang va qayta-qayta yoqmang: bu nosozlikni kuchaytirishi mumkin. Texnikani bizga olib keling, diagnostika qilamiz.",ft_cardh:'Tezkor ariza',ft_cardp:"Bizga qo'ng'iroq qiling, texnikangiz bilan nima qilishni aytamiz.",ft_ch:"Biz bilan bog'laning",ft_hh:'Ish vaqti',ft_h1:'Du – Ju: 09:00 – 18:00',ft_h2:'Sh: 09:00 – 18:00',ft_h3:'Ya: dam olish kuni',ft_rights:'Barcha huquqlar himoyalangan.',fm_eye:'Anketa',fm_h:'Ariza qoldiring',fm_sub:"Anketani to'ldiring, biz siz bilan bog'lanamiz.",fm_plan:'Tarif',fm_name:'Ismingiz',fm_phone:'Telefon',fm_dev:'Texnika va brend',fm_msg:'Nima bo\'ldi?',fm_send:'Telegramga yuborish',fm_note:"Telegram tayyor xabar bilan ochiladi, faqat «Yuborish» ni bosish qoladi.",fm_err:"Ism va telefonni kiriting (kamida 9 raqam).",xv_eye:'3D',xv_h:'Texnikaning ichki tuzilishi',xv_t1:'Kofe mashinasi',xv_t2:'Dyson V15 Detect',xv_p:"Texnikani tanlang, aylantiring va detallarga ajratish uchun bosing. Nima ekanini va nima ko'proq ta'mir talab qilishini bilish uchun detalga bosing.",nav_services:'Metodika',nav_process:"Qo'llanma",nav_contact:'Aloqa',sc:'Servis markazi',mq:'Xizmat ko\'rsatiladigan brendlar',st1:'mamnun mijozlar',st2:'ish bozorida',st2u:'yil',st3:"ta'mirlangan texnika",
 tag:"Texnikangizga professionallardan professional yondashuv",
 cta1:'Ariza qoldirish',cta2:'Xizmatlarimiz',b_eye:'Brendlar',b_h:"Ixtisoslik — Dyson. Boshqa texnikani ham ta'mirlaymiz.",
 b_dy:"Changyutgichlar, fenlar, stayllerlar, havo tozalagichlar. Har bir modelning tuzilishini bilamiz.",b_oth:'Boshqa brendlar',
@@ -1024,13 +1024,13 @@ async function init(){
     d_laser:{ru:['Лазерная подсветка','Зелёный лазер подсвечивает мельчайшую пыль на твёрдых полах. Загрязнение линзы делает подсветку тусклой.'],uz:['Lazer yoritgich','Yashil lazer qattiq polda eng mayda changni yoritadi. Linza ifloslansa, yorug\'lik xira bo\'ladi.']},
     d_wand:{ru:['Трубка','Передаёт воздушный поток и питание к насадке. Контакты окисляются или засоряются, и насадка перестаёт работать.'],uz:['Quvur','Havo oqimi va quvvatni nasadkaga uzatadi. Kontaktlar oksidlansa yoki tiqilsa, nasadka ishlamay qoladi.']},
     d_bin:{ru:['Контейнер для пыли','Прозрачный контейнер собирает мусор. Переполнение снижает мощность. Опорожняется одним движением рычага.'],uz:['Chang idishi','Shaffof idish axlatni yig\'adi. To\'lib ketsa, quvvat pasayadi. Tutqichni bir harakat bilan bo\'shatiladi.']},
-    d_cyclone:{ru:['Циклоны','Конусы отделяют пыль от воздуха центробежной силой. Забитые циклоны дают слабую тягу и свист.'],uz:['Siklonlar','Konuslar changni havodan markazdan qochma kuch bilan ajratadi. Tiqilgan siklonlar kuchsiz tortish va hushtak beradi.']},
+    d_cyclone:{ru:['Шрауд и конусы','Внутри контейнера: шрауд и конусы направляют пыль в контейнер. Налипшая грязь снижает эффективность.'],uz:['Shroud va konuslar','Idish ichida: shroud va konuslar changni idishga yo\'naltiradi. Yopishgan kir samaradorlikni pasaytiradi.']},
     d_sensor:{ru:['Пьезодатчик','Считает частицы пыли и передаёт данные на экран. Загрязнение делает показания неточными.'],uz:['Pyezodatchik','Chang zarralarini sanaydi va ma\'lumotni ekranga uzatadi. Ifloslansa, ko\'rsatkichlar noaniq bo\'ladi.']},
     d_prefilter:{ru:['Предмоторный фильтр','Защищает двигатель от мелкой пыли. Его моют холодной водой раз в месяц и сушат сутки.'],uz:['Motor oldi filtri','Dvigatelni mayda changdan himoya qiladi. Oyiga bir marta sovuq suvda yuviladi va bir kun quritiladi.']},
     d_shell:{ru:['Корпус двигателя','Соединяет двигатель, фильтры и аккумулятор. Трещины и ослабленные крепления дают вибрацию и шум.'],uz:['Dvigatel korpusi','Dvigatel, filtrlar va akkumulyatorni birlashtiradi. Yoriq va bo\'shagan mahkamlagichlar tebranish va shovqin beradi.']},
     d_motor:{ru:['Двигатель','Высокооборотный двигатель создаёт разрежение. Износ подшипников и засор дают шум, перегрев и отключения.'],uz:['Dvigatel','Yuqori aylanishli dvigatel vakuum hosil qiladi. Podshipnik eskirishi va tiqilish shovqin, qizish va o\'chib qolishni keltiradi.']},
     d_postfilter:{ru:['Постмоторный фильтр','Очищает выходящий воздух. Забитый фильтр вызывает перегрев и неприятный запах.'],uz:['Motor orqasi filtri','Chiquvchi havoni tozalaydi. Tiqilgan filtr qizish va yoqimsiz hid keltirib chiqaradi.']},
-    d_handle:{ru:['Рукоятка','Удобная рукоятка с креплением курка. Трещины пластика и износ креплений расшатывают корпус.'],uz:['Dasta','Tetikni mahkamlovchi qulay dasta. Plastik yoriqlari va mahkamlagich eskirishi korpusni bo\'shatadi.']},
+    d_cap:{ru:['Циклонный блок','Жёлтый узел с циклонами (Root Cyclone) отделяет пыль от воздуха центробежной силой. Забитые циклоны дают слабую тягу и свист.'],uz:['Siklon bloki','Sariq blok siklonlari (Root Cyclone) changni havodan markazdan qochma kuch bilan ajratadi. Tiqilgan siklonlar kuchsiz tortish va hushtak beradi.']},
     d_trigger:{ru:['Курок','Включает и выключает двигатель. Залипание и износ контактов — частая причина «не включается».'],uz:['Tetik','Dvigatelni yoqadi va o\'chiradi. Yopishib qolish va kontakt eskirishi «yoqilmaydi» muammosining keng tarqalgan sababi.']},
     d_lcd:{ru:['ЖК-экран','Показывает режим, заряд и количество частиц. Коды ошибок на экране подсказывают тип неисправности.'],uz:['LCD ekran','Rejim, zaryad va zarralar sonini ko\'rsatadi. Ekrandagi xato kodlari nosozlik turini bildiradi.']},
     d_battery:{ru:['Аккумулятор','Съёмный литий-ионный аккумулятор. Со временем теряет ёмкость: пылесос работает меньше, индикатор мигает.'],uz:['Akkumulyator','Olinadigan litiy-ion akkumulyator. Vaqt o\'tishi bilan sig\'imi kamayadi: changyutgich kamroq ishlaydi, indikator miltillaydi.']},
@@ -1322,102 +1322,122 @@ async function init(){
   }
   const call=document.createElement('div');call.className='xv-call';call.hidden=true;stage.appendChild(call);
 
-  // ===================== Dyson V15 (stick vacuum) =====================
+  // ===================== Dyson V15 Detect (stick vacuum) =====================
   const dysonItems=[];items=dysonItems;
-  M.dyIron=new THREE.MeshStandardMaterial({color:0x3b3e45,metalness:.7,roughness:.35});
-  M.dyNickel=new THREE.MeshStandardMaterial({color:0xbcc1c9,metalness:.95,roughness:.26});
-  M.dyYellow=new THREE.MeshStandardMaterial({color:0xe9c21a,metalness:.2,roughness:.5});
-  M.dyPurple=new THREE.MeshStandardMaterial({color:0x7d52a8,metalness:.1,roughness:.6});
-  M.dyLilac=new THREE.MeshStandardMaterial({color:0xcdbae3,metalness:.05,roughness:.7});
+  M.dyNickel=new THREE.MeshStandardMaterial({color:0xa4a9b1,metalness:.9,roughness:.3});
+  M.white=new THREE.MeshStandardMaterial({color:0xf2f2f4,metalness:.05,roughness:.7});
+  M.dyDark=new THREE.MeshStandardMaterial({color:0x4a4d54,metalness:.7,roughness:.35});
+  M.dyGold=new THREE.MeshStandardMaterial({color:0xe2a800,metalness:.35,roughness:.4});
+  M.dyWand=new THREE.MeshStandardMaterial({color:0x80848c,metalness:.85,roughness:.32});
+  M.dyOrange=new THREE.MeshStandardMaterial({color:0xe9731a,metalness:.2,roughness:.45});
+  M.dyPurple=new THREE.MeshStandardMaterial({color:0x8d56c8,metalness:.1,roughness:.35,transparent:true,opacity:.92});
+  M.dyLilac=new THREE.MeshStandardMaterial({color:0xd7c6ec,metalness:.05,roughness:.7});
   M.dyRed=new THREE.MeshStandardMaterial({color:0xd8352a,metalness:.1,roughness:.4});
+  M.dyBlue=new THREE.MeshStandardMaterial({color:0x3346b4,metalness:.2,roughness:.45});
+  M.dyBat=new THREE.MeshStandardMaterial({color:0x8d929a,metalness:.6,roughness:.45});
   M.dyBin=new THREE.MeshStandardMaterial({color:0xe3ebf2,metalness:0,roughness:.05,transparent:true,opacity:.2,depthWrite:false});
   M.dust=new THREE.MeshStandardMaterial({color:0x8d867a,metalness:0,roughness:.95});
   M.dyLaser=new THREE.MeshBasicMaterial({color:0x42ff78});
-  const lc=document.createElement('canvas');lc.width=256;lc.height=160;const lx=lc.getContext('2d');
-  lx.fillStyle='#05070b';lx.fillRect(0,0,256,160);
-  lx.fillStyle='#7be08f';lx.font='600 26px Jost, Arial, sans-serif';lx.fillText('AUTO',16,34);
-  lx.fillStyle='#8f96a1';lx.font='400 16px Arial';lx.fillText('Battery 62%',150,30);
-  [14,26,40,58,84,110,80,52,30,18].forEach((h,i)=>{lx.fillStyle=i>6?'#e9c21a':'#6fb6ff';lx.fillRect(18+i*22,140-h,16,h)});
+  // striped roller
+  const rc=document.createElement('canvas');rc.width=rc.height=256;const rx=rc.getContext('2d');
+  rx.fillStyle='#2b3db0';rx.fillRect(0,0,256,256);
+  rx.lineWidth=34;
+  for(let i=-6;i<10;i++){rx.strokeStyle=(i%2?'#e8b900':'#0e0e12');rx.beginPath();rx.moveTo(i*64-40,0);rx.lineTo(i*64+120,256);rx.stroke()}
+  const rollTex=new THREE.CanvasTexture(rc);rollTex.wrapS=rollTex.wrapT=THREE.RepeatWrapping;rollTex.colorSpace=THREE.SRGBColorSpace;rollTex.repeat.set(2,1);
+  M.dyRoller=new THREE.MeshStandardMaterial({map:rollTex,metalness:.05,roughness:.85});
+  // round LCD
+  const lc=document.createElement('canvas');lc.width=lc.height=256;const lx=lc.getContext('2d');
+  lx.fillStyle='#07090e';lx.fillRect(0,0,256,256);
+  lx.fillStyle='#8f96a1';lx.font='400 18px Arial';lx.textAlign='center';lx.fillText('AUTO',128,60);
+  [28,46,70,100,82,56,36,22].forEach((h,i)=>{lx.fillStyle=i>4?'#e8b900':(i>2?'#7be08f':'#6fb6ff');lx.fillRect(40+i*22,190-h,15,h)});
+  lx.fillStyle='#e8eaee';lx.font='600 26px Arial';lx.fillText('55:37',128,222);
   const lcdTex=new THREE.CanvasTexture(lc);lcdTex.colorSpace=THREE.SRGBColorSpace;
   const dc=document.createElement('canvas');dc.width=256;dc.height=64;const dx=dc.getContext('2d');
-  dx.fillStyle='#e8eaee';dx.font='600 46px Jost, Arial, sans-serif';dx.textAlign='center';dx.textBaseline='middle';dx.fillText('dyson',128,34);
+  dx.fillStyle='#2a2d33';dx.font='600 46px Jost, Arial, sans-serif';dx.textAlign='center';dx.textBaseline='middle';dx.fillText('dyson',128,34);
   const dysonTex=new THREE.CanvasTexture(dc);dysonTex.colorSpace=THREE.SRGBColorSpace;
 
-  part('d_head',[0,0.22,0],[0,-0.6,0],g=>{
-    g.add(place(box(1.9,.34,.8,M.dyIron,.1),0,0,0));
-    g.add(place(box(1.7,.12,.7,M.dyNickel,.05),0,.2,-.02));
-    g.add(place(cyl(.16,.2,.3,M.dyIron,32),0,.4,-.25));
-    g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.2,24,24),M.dyNickel),0,.58,-.28));
-    for(const x of [-.95,.95])g.add(place(cyl(.12,.12,.08,M.black,24),x,-.05,-.28,0,0,Math.PI/2));
+  part('d_head',[0,0.2,0],[0,-0.6,0],g=>{
+    g.add(place(box(1.9,.3,.78,M.dyNickel,.12),0,0,-.02));
+    g.add(place(box(1.5,.1,.6,M.dyDark,.05),.05,.18,-.05));
+    g.add(place(box(.24,.2,.46,M.dyNickel,.06),.95,0,.05));
+    g.add(place(cyl(.17,.17,.2,M.dyBlue,32),.2,.34,-.28));
+    g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.2,24,24),M.dyNickel),.2,.55,-.28));
+    g.add(place(cyl(.12,.12,.16,M.dyBlue,24),.2,.74,-.28));
   });
-  part('d_roller',[0,0.2,0.34],[0,-0.1,2.0],g=>{
-    g.add(place(cyl(.18,.18,1.6,M.dyYellow,40),0,0,0,0,0,Math.PI/2));
-    for(const x of [-.82,.82])g.add(place(cyl(.2,.2,.06,M.dyIron,32),x,0,0,0,0,Math.PI/2));
-    for(let i=0;i<7;i++)g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.18,.018,8,32),M.dyIron),-.6+i*.2,0,0,0,Math.PI/2));
+  part('d_roller',[0,0.2,0.38],[0,-0.1,2.0],g=>{
+    g.add(place(cyl(.2,.2,1.65,M.dyRoller,48),0,0,0,0,0,Math.PI/2));
+    for(const x of [-.84,.84])g.add(place(cyl(.22,.22,.06,M.dyNickel,32),x,0,0,0,0,Math.PI/2));
   });
-  part('d_laser',[0,0.38,0.68],[0,1.0,1.7],g=>{
-    g.add(place(box(1.5,.04,.05,M.dyLaser,.01),0,0,0));
-    g.add(place(box(1.56,.09,.1,M.dyBin,.03),0,0,0));
+  part('d_laser',[-0.8,0.3,0.78],[-0.4,0.9,1.7],g=>{
+    g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.08,16,16),M.dyLaser),0,0,0));
+    g.add(place(box(.2,.12,.14,M.dyBin,.03),0,0,0));
+    const N=240,pos=new Float32Array(N*3);
+    for(let i=0;i<N;i++){const t=Math.pow(Math.random(),.6)*2.4,sp=(Math.random()-.5)*(.5+t*.5);pos[i*3]=-t*.55+sp;pos[i*3+1]=-.28+Math.random()*.04;pos[i*3+2]=t*.85+sp*.4}
+    const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    g.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x4cff82,size:.045,transparent:true,opacity:.9,depthWrite:false})));
   });
-  part('d_wand',[0,2.15,-0.28],[2.2,0,0],g=>{
-    g.add(place(cyl(.1,.1,2.9,M.dyNickel,32),0,0,0));
-    g.add(place(cyl(.125,.125,.14,M.dyYellow,32),0,-1.3,0));
-    g.add(place(cyl(.125,.125,.14,M.dyYellow,32),0,1.3,0));
-    g.add(place(cyl(.11,.11,.5,M.dyIron,32),0,-1.0,0));
+  part('d_wand',[0,2.4,-0.28],[-2.1,-0.4,0],g=>{
+    g.add(place(cyl(.1,.1,3.3,M.dyWand,32),0,0,0));
+    g.add(place(cyl(.125,.125,.5,M.dyNickel,32),0,-1.55,0));
+    g.add(place(cyl(.125,.125,.45,M.dyNickel,32),0,1.6,0));
+    g.add(place(box(.1,.16,.06,M.dyRed,.02),0,-1.3,.12));
+    g.add(place(box(.1,.16,.06,M.dyRed,.02),0,1.55,.12));
   });
-  part('d_bin',[0,4.35,-0.2],[0,1.3,1.9],g=>{
-    g.add(place(cyl(.42,.42,1.5,M.dyBin,48),0,0,0));
-    g.add(place(cyl(.31,.31,.4,M.dust,32),0,-.5,0));
-    g.add(place(cyl(.46,.46,.2,M.dyNickel,48),0,-.8,0));
-    g.add(place(cyl(.46,.46,.12,M.dyNickel,48),0,.78,0));
-    g.add(place(box(.14,.4,.1,M.dyRed,.03),0,-.78,.46));
+  part('d_bin',[0,4.75,-0.28],[0,-0.4,2.0],g=>{
+    g.add(place(cyl(.44,.44,1.3,M.dyBin,48),0,0,0));
+    g.add(place(cyl(.27,.27,.9,M.dyDark,32),0,.15,0));
+    g.add(place(cyl(.3,.3,.35,M.dust,32),0,-.4,0));
+    g.add(place(cyl(.47,.47,.16,M.dyNickel,48),0,-.7,0));
+    g.add(place(cyl(.47,.47,.08,M.dyNickel,48),0,.66,0));
+    g.add(place(box(.12,.3,.1,M.dyRed,.03),0,-.7,.5));
   });
-  part('d_cyclone',[0,4.5,-0.2],[0,2.9,2.1],g=>{
-    g.add(place(cyl(.2,.2,1.1,M.dyNickel,24),0,0,0));
-    for(let i=0;i<8;i++){const a=i/8*6.283;g.add(place(cyl(.1,.045,.6,M.dyLilac,20),Math.cos(a)*.28,.25,Math.sin(a)*.28))}
-    g.add(place(cyl(.4,.4,.08,M.dyIron,40),0,.58,0));
+  part('d_cyclone',[0,5.0,-0.28],[0,1.0,2.7],g=>{
+    for(let i=0;i<10;i++){const a=i/10*6.283;g.add(place(cyl(.1,.045,.55,M.dyNickel,20),Math.cos(a)*.34,.15,Math.sin(a)*.34))}
+    g.add(place(cyl(.38,.38,.06,M.dyDark,40),0,.45,0));
   });
-  part('d_sensor',[0,3.78,-0.2],[-2.2,0.4,1.8],g=>{
-    g.add(place(cyl(.26,.26,.14,M.dyIron,32),0,0,0));
+  part('d_sensor',[0,4.12,-0.28],[-2.4,-0.2,1.9],g=>{
+    g.add(place(cyl(.26,.26,.14,M.dyDark,32),0,0,0));
     g.add(place(cyl(.12,.12,.05,M.copper,24),0,.09,0));
-    g.add(place(box(.14,.1,.4,M.dyIron,.02),.25,0,0));
+    g.add(place(box(.14,.1,.4,M.dyDark,.02),.25,0,0));
   });
-  part('d_prefilter',[0,4.35,-0.62],[-2.0,0.9,0.2],g=>{
-    g.add(place(cyl(.38,.38,.16,M.dyLilac,40),0,0,0,Math.PI/2));
-    g.add(place(cyl(.3,.3,.18,M.white||M.dyLilac,32),0,0,0,Math.PI/2));
+  part('d_cap',[0,5.68,-0.28],[0,0.15,0],g=>{
+    g.add(place(cyl(.47,.47,.55,M.dyGold,48),0,0,0));
+    for(let i=0;i<14;i++){const a=i/14*6.283;g.add(place(cyl(.105,.105,.55,M.dyGold,16),Math.cos(a)*.47,0,Math.sin(a)*.47))}
+    g.add(place(cyl(.52,.52,.04,M.dyRed,48),0,-.26,0));
   });
-  part('d_shell',[0,4.35,-1.2],[0,0.9,-0.9],g=>{
-    g.add(place(cyl(.4,.4,1.3,M.dyIron,48),0,0,0,Math.PI/2));
-    g.add(place(cyl(.41,.41,.08,M.dyNickel,48),0,0,.55,Math.PI/2));
-    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.56,.14),new THREE.MeshBasicMaterial({map:dysonTex,transparent:true})),.41,.05,0,0,Math.PI/2,0));
+  part('d_lcd',[0,5.68,-0.84],[0,0.6,-2.6],g=>{
+    g.rotation.x=-.25;
+    g.add(place(cyl(.31,.31,.07,M.dyOrange,48),0,0,0,Math.PI/2));
+    for(let i=0;i<12;i++){const a=i/12*6.283;g.add(place(cyl(.06,.06,.07,M.dyOrange,12),Math.cos(a)*.31,Math.sin(a)*.31,0,Math.PI/2))}
+    g.add(place(cyl(.25,.25,.075,M.black,40),0,0,0,Math.PI/2));
+    g.add(place(new THREE.Mesh(new THREE.CircleGeometry(.23,40),new THREE.MeshBasicMaterial({map:lcdTex})),0,0,-.045,0,Math.PI,0));
   });
-  part('d_motor',[0,4.35,-1.2],[0,0.9,-2.3],g=>{
-    g.add(place(cyl(.2,.2,.9,M.dyNickel,32),0,0,0,Math.PI/2));
-    g.add(place(cyl(.27,.27,.06,M.copper,32),0,0,.4,Math.PI/2));
-    for(let i=0;i<8;i++){const a=i/8*6.283;g.add(place(box(.02,.12,.06,M.dyNickel,.005),Math.cos(a)*.15,Math.sin(a)*.15,.44,0,0,a))}
+  part('d_prefilter',[0,6.0,-0.28],[-2.1,0.9,0.5],g=>{
+    g.add(place(cyl(.4,.4,.14,M.dyLilac,40),0,0,0));
+    g.add(place(cyl(.3,.3,.16,M.white,32),0,0,0));
   });
-  part('d_postfilter',[0,4.35,-1.9],[0,0.9,-3.4],g=>{
-    g.add(place(cyl(.4,.4,.2,M.dyPurple,40),0,0,0,Math.PI/2));
-    for(let i=-2;i<=2;i++)g.add(place(box(.5,.02,.04,M.dyIron,.005),0,i*.12,-.11,0));
+  part('d_shell',[0,6.5,-0.28],[0,0.9,0],g=>{
+    g.add(place(cyl(.4,.4,.95,M.dyNickel,48),0,0,0));
+    g.add(place(cyl(.41,.41,.07,M.dyDark,48),0,-.45,0));
+    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.5,.12),new THREE.MeshBasicMaterial({map:dysonTex,transparent:true})),0,.05,.405));
   });
-  part('d_handle',[0,5.4,-0.95],[0,2.2,-0.6],g=>{
-    g.add(place(box(.26,.22,1.75,M.dyIron,.09),0,.2,0));
-    g.add(place(box(.24,.65,.24,M.dyIron,.07),0,-.15,.8));
-    g.add(place(box(.24,.55,.24,M.dyIron,.07),0,-.1,-.8));
+  part('d_motor',[0,6.5,-0.28],[-2.2,1.5,0],g=>{
+    g.add(place(cyl(.2,.2,.8,M.dyDark,32),0,0,0));
+    g.add(place(cyl(.27,.27,.06,M.copper,32),0,.38,0));
+    for(let i=0;i<8;i++){const a=i/8*6.283;g.add(place(box(.02,.06,.12,M.dyNickel,.005),Math.cos(a)*.15,.42,Math.sin(a)*.15,0,-a,0))}
   });
-  part('d_trigger',[0,5.05,-0.5],[2.0,0.6,0.5],g=>{
-    g.add(place(box(.12,.4,.14,M.dyIron,.04),0,0,0,.25));
-    g.add(place(box(.16,.07,.16,M.dyYellow,.02),0,-.22,.06));
+  part('d_postfilter',[0,7.17,-0.28],[0,2.0,0],g=>{
+    g.add(place(cyl(.4,.4,.5,M.dyPurple,48),0,0,0));
+    g.add(place(cyl(.34,.34,.06,M.dyLilac,40),0,.27,0));
+    for(let i=-2;i<=2;i++)g.add(place(box(.5,.04,.02,M.dyLilac,.005),0,i*.1,.41));
   });
-  part('d_lcd',[0,4.78,-1.3],[0,1.6,-1.7],g=>{
-    g.rotation.x=-0.55;
-    g.add(place(box(.72,.05,.5,M.black,.02),0,0,0));
-    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.62,.38),new THREE.MeshBasicMaterial({map:lcdTex})),0,.03,0,-Math.PI/2));
+  part('d_battery',[0.68,5.7,-0.28],[2.3,0.3,0],g=>{
+    g.add(place(box(.26,1.9,.78,M.dyBat,.07),0,0,0));
+    g.add(place(box(.3,.35,.5,M.dyNickel,.04),.01,-.75,0));
+    g.add(place(box(.12,.16,.08,M.dyRed,.02),.12,-.95,.35));
   });
-  part('d_battery',[0,3.55,-1.2],[0,-1.5,-2.0],g=>{
-    g.add(place(box(.66,.95,.9,M.dyIron,.1),0,0,0));
-    g.add(place(box(.7,.08,.94,M.dyNickel,.03),0,-.47,0));
-    g.add(place(box(.2,.12,.08,M.dyYellow,.02),0,.2,.46));
+  part('d_trigger',[0.28,5.3,0.2],[1.9,-0.2,1.6],g=>{
+    g.add(place(box(.12,.34,.14,M.dyRed,.04),0,0,0,.2));
   });
   items=coffeeItems;
 
@@ -1477,7 +1497,7 @@ async function init(){
   // ---- model switch (coffee machine / Dyson V15)
   let model='coffee';
   const CFG={coffee:{col:[7.2,8.6],exp:[13.4,14.4],t0:[.55,.7,.45],t1:[.1,1.05,.2],shadowY:-2.32,shadowS:1},
-             dyson:{col:[3.8,6.9],exp:[10.5,11.6],t0:[0,2.9,-.4],t1:[0,3.2,-.8],shadowY:-0.01,shadowS:.7}};
+             dyson:{col:[3.8,9.0],exp:[10.5,13.2],t0:[0,3.8,0],t1:[0,4.4,0],shadowY:-0.01,shadowS:.7}};
   const tabs=[...document.querySelectorAll('.xv-tab')];
   function switchModel(m){
     if(m===model)return;
