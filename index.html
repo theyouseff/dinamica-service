@@ -1372,12 +1372,12 @@ async function init(){
     g.add(place(box(.2,.09,.1,M.dyLaser,.02),0,0,0));
     g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.07,16,16),M.dyLaser),0,0,.05));
     // control board + wires (hidden inside the head when assembled)
-    g.add(place(box(.55,.03,.34,M.pcb,.01),.05,.0,-.78));
-    for(const [x,z,w,d] of [[-.08,-.8,.14,.12],[.12,-.72,.1,.1],[.2,-.86,.12,.08]])g.add(place(box(w,.04,d,M.chip,.005),x,.035,z));
-    g.add(place(box(.12,.05,.06,M.black,.005),-.2,.04,-.7));
+    g.add(place(box(.5,.03,.32,M.pcb,.01),.42,.0,-.8));
+    for(const [x,z,w,d] of [[.3,-.82,.14,.12],[.5,-.74,.1,.1],[.58,-.88,.12,.08]])g.add(place(box(w,.04,d,M.chip,.005),x,.035,z));
+    g.add(place(box(.12,.05,.06,M.black,.005),.24,.04,-.72));
     const wireCols=[0xd8352a,0x15161a,0xe9c21a];
     wireCols.forEach((c,i)=>{
-      const sx=-.12+i*.07,curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx,.02,-.62),new THREE.Vector3(sx-.02,-.02,-.45+i*.02),new THREE.Vector3(sx*.5,.0,-.2),new THREE.Vector3(i*.015-.015,.0,-.04)]);
+      const sx=.25+i*.05,curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx,.02,-.66),new THREE.Vector3(sx-.12,.0,-.5+i*.02),new THREE.Vector3(sx*.35,.0,-.26),new THREE.Vector3(i*.015-.015,.0,-.04)]);
       g.add(new THREE.Mesh(new THREE.TubeGeometry(curve,24,.011,8,false),new THREE.MeshStandardMaterial({color:c,metalness:.1,roughness:.5})));
     });
     const FY=-0.1,A=[0,FY,0.05],B=[-2.0,FY,2.3],C=[-0.1,FY,2.7];
