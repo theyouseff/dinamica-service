@@ -1413,7 +1413,7 @@ async function init(){
     for(let i=0;i<14;i++){const a=i/14*6.283;g.add(place(cyl(.105,.105,.55,M.dyGold,16),Math.cos(a)*.47,0,Math.sin(a)*.47))}
     g.add(place(cyl(.52,.52,.04,M.dyRed,48),0,-.26,0));
   });
-  part('d_lcd',[0,7.45,-0.28],[0,2.5,0],g=>{
+  part('d_lcd',[0,7.64,-0.28],[0,2.5,0],g=>{
     g.add(place(cyl(.33,.33,.04,M.black,48),0,0,0));
     g.add(place(new THREE.Mesh(new THREE.CircleGeometry(.29,48),new THREE.MeshBasicMaterial({map:lcdTex})),0,.025,0,-Math.PI/2));
   });
@@ -1421,28 +1421,28 @@ async function init(){
     g.add(place(cyl(.4,.4,.14,M.dyLilac,40),0,0,0));
     g.add(place(cyl(.3,.3,.16,M.white,32),0,0,0));
   });
-  part('d_shell',[0,6.5,-0.28],[0,0.9,0],g=>{
-    g.add(place(cyl(.4,.4,.95,M.dyNickel,48),0,0,0));
-    g.add(place(cyl(.41,.41,.07,M.dyDark,48),0,-.45,0));
-    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.5,.12),new THREE.MeshBasicMaterial({map:dysonTex,transparent:true})),0,.05,.405));
+  part('d_shell',[0,6.535,-0.28],[0,0.9,0],g=>{
+    g.add(place(cyl(.4,.4,1.15,M.dyNickel,48),0,0,0));
+    g.add(place(cyl(.41,.41,.07,M.dyDark,48),0,-.54,0));
+    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(.5,.12),new THREE.MeshBasicMaterial({map:dysonTex,transparent:true})),0,.12,.405));
   });
-  part('d_motor',[0,6.5,-0.28],[-2.2,1.5,0],g=>{
+  part('d_motor',[0,6.535,-0.28],[-2.2,1.5,0],g=>{
     g.add(place(cyl(.2,.2,.8,M.dyDark,32),0,0,0));
     g.add(place(cyl(.27,.27,.06,M.copper,32),0,.38,0));
     for(let i=0;i<8;i++){const a=i/8*6.283;g.add(place(box(.02,.06,.12,M.dyNickel,.005),Math.cos(a)*.15,.42,Math.sin(a)*.15,0,-a,0))}
   });
-  part('d_postfilter',[0,7.17,-0.28],[0,2.0,0],g=>{
+  part('d_postfilter',[0,7.36,-0.28],[0,2.0,0],g=>{
     g.add(place(cyl(.4,.4,.5,M.dyPurple,48),0,0,0));
     for(let i=-2;i<=2;i++)g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.4,.016,8,64),M.dyLilac),0,i*.1,0,Math.PI/2));
   });
-  part('d_battery',[1.15,5.7,-0.28],[2.4,0.3,0],g=>{
-    g.add(place(box(.28,1.95,.78,M.dyBat,.08),0,0,0));
-    g.add(place(box(.32,.36,.52,M.dyNickel,.05),0,-.8,0));
-    g.add(place(box(.12,.16,.08,M.dyRed,.02),.14,-.98,.36));
-    g.add(place(box(.66,.16,.5,M.dyNickel,.05),-.4,.5,0));
-    g.add(place(box(.66,.16,.5,M.dyNickel,.05),-.4,-.5,0));
-    g.add(place(box(.24,.1,.3,M.dyRed,.04),-.4,.4,0));
-    g.add(place(box(.14,.05,.18,M.dyRed,.02),-.4,.35,0));
+  part('d_battery',[1.15,6.55,-0.28],[2.4,0.3,0],g=>{
+    g.add(place(box(.28,1.55,.78,M.dyBat,.08),0,0,0));
+    g.add(place(box(.32,.3,.52,M.dyNickel,.05),0,-.65,0));
+    g.add(place(box(.12,.16,.08,M.dyRed,.02),.14,-.78,.36));
+    g.add(place(box(.66,.16,.5,M.dyNickel,.05),-.455,.4,0));
+    g.add(place(box(.66,.16,.5,M.dyNickel,.05),-.455,-.45,0));
+    g.add(place(box(.24,.1,.3,M.dyRed,.04),-.455,.3,0));
+    g.add(place(box(.14,.05,.18,M.dyRed,.02),-.455,.25,0));
   });
   items=coffeeItems;
 
