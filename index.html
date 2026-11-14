@@ -1372,7 +1372,7 @@ async function init(){
     if(act&&prog>.6){bb.makeEmpty();for(const it of items)if(it.id===act)bb.expandByObject(it.group);if(bb.isEmpty()){chPos.set(0,0,0)}else{bb.getCenter(chPos);bb.getSize(sz);fdist=Math.min(THREE.MathUtils.clamp(sz.length()*1.9,3.4,40),dBaseNow*.8)}}
     focus+=((act&&prog>.6&&fdist?1:0)-focus)*(1-Math.exp(-dt*4));
     const dCol=distFor(7.2,8.6),dExp=distFor(13.4,14.4),dBase=THREE.MathUtils.lerp(dCol,dExp,ease(prog)),d=THREE.MathUtils.lerp(dBase,fdist||dBase,focus);
-    defT.set(0,THREE.MathUtils.lerp(.7,1.05,prog),0);controls.target.lerpVectors(defT,chPos,focus);
+    defT.set(THREE.MathUtils.lerp(.55,.1,prog),THREE.MathUtils.lerp(.7,1.05,prog),THREE.MathUtils.lerp(.45,.2,prog));controls.target.lerpVectors(defT,chPos,focus);
     tmp.copy(camera.position).sub(controls.target);tmp.setLength(d);camera.position.copy(controls.target).add(tmp);
     // keep machine centered vertically as it explodes
     if(!down&&!controls.autoRotate&&!reduce&&performance.now()-idleT>2500&&idleT)controls.autoRotate=true;
