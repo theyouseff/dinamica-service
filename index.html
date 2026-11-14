@@ -155,7 +155,6 @@ nav a:hover{color:var(--text)}
 
 #services .wrap{text-align:center}
 #services h2{margin-left:auto;margin-right:auto}
-#services .card{text-align:left}
 #process .wrap{text-align:center}
 #process h2{margin-left:auto;margin-right:auto}
 #process .step{text-align:left}
@@ -263,6 +262,42 @@ footer{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(2
 .od-err{color:#e8948a;font-size:14px}
 .od-send{width:100%;cursor:pointer;font-family:var(--body)}
 .od-note{font-size:13px;color:var(--muted);text-align:center}
+
+
+/* methodology road */
+.road{position:relative;margin-top:70px;text-align:left}
+.road-svg{position:absolute;left:50%;top:0;width:150px;height:100%;transform:translateX(-50%);overflow:visible;pointer-events:none}
+.road-svg path{fill:none;stroke-linecap:butt;stroke-linejoin:round}
+.r-edge{stroke:rgba(190,194,202,.32);stroke-width:50}
+.r-base{stroke:#0b0b0e;stroke-width:44}
+.r-dash{stroke:rgba(217,220,225,.5);stroke-width:2;stroke-dasharray:10 14}
+.r-prog{stroke:#fff;stroke-width:3;filter:drop-shadow(0 0 6px rgba(255,255,255,.7))}
+.r-marker{position:absolute;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;display:grid;place-items:center;color:#0b0b0d;z-index:3;
+  background:radial-gradient(circle at 35% 30%,#fff,#b7bbc3);box-shadow:0 0 0 6px rgba(217,220,225,.14),0 0 30px rgba(217,220,225,.55);will-change:transform}
+.rsteps{position:relative;z-index:2}
+.rstep{display:grid;grid-template-columns:1fr 190px 1fr;min-height:250px;align-items:start}
+.rstep .cell{max-width:420px}
+.rstep:nth-child(odd) .cell{grid-column:1;justify-self:end;text-align:right}
+.rstep:nth-child(even) .cell{grid-column:3;justify-self:start;text-align:left;margin-top:70px}
+.tile{display:inline-grid;place-items:center;width:84px;height:84px;margin-bottom:22px;border-radius:20px 8px 8px 20px;transform:skewX(-7deg);color:#0b0b0d;
+  background:linear-gradient(145deg,#f0f1f4,#9ea2aa);box-shadow:0 10px 30px rgba(0,0,0,.5);transition:box-shadow .5s,transform .5s}
+.tile svg{transform:skewX(7deg)}
+.rstep.on .tile{box-shadow:0 0 0 1px rgba(255,255,255,.4),0 0 36px rgba(217,220,225,.55)}
+.rstep h3{font-family:var(--display);font-weight:500;font-size:clamp(22px,2.4vw,28px);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.rstep p{color:var(--muted);font-size:16px;line-height:1.7}
+.rstep .cell{opacity:0;transition:opacity .9s ease,transform .9s cubic-bezier(.22,.8,.24,1)}
+.rstep:nth-child(odd) .cell{transform:translateX(-50px)}
+.rstep:nth-child(even) .cell{transform:translateX(50px)}
+.rstep.in .cell{opacity:1;transform:none}
+@media (max-width:860px){
+  .road{padding-left:0}
+  .road-svg{left:34px;width:70px;transform:none}
+  .rstep{grid-template-columns:1fr;padding-left:96px;min-height:0;padding-bottom:46px}
+  .rstep .cell,.rstep:nth-child(odd) .cell,.rstep:nth-child(even) .cell{grid-column:1;justify-self:start;text-align:left;margin-top:0;transform:translateY(30px)}
+  .rstep.in .cell{transform:none}
+  .tile{width:68px;height:68px}
+}
+@media (prefers-reduced-motion:reduce){.rstep .cell{opacity:1;transform:none;transition:none}}
 
 /* sections */
 section{padding:110px 0;border-top:1px solid var(--line)}
@@ -450,13 +485,53 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,56px);let
   <div class="wrap">
     <div class="eyebrow reveal" data-i="s_eye">Методика</div>
     <h2 class="reveal" data-i="s_h">Наша методика</h2>
-    <div class="grid reveal">
-      <div class="card"><div class="n">01</div><h3 data-i="s1">Диагностика</h3><p data-i="s1p">Находим причину неисправности и называем стоимость до начала работ.</p></div>
-      <div class="card"><div class="n">02</div><h3 data-i="s2">Ремонт</h3><p data-i="s2p">Устраняем неисправности: от замены аккумулятора до ремонта плат и моторов.</p></div>
-      <div class="card"><div class="n">03</div><h3 data-i="s3">Запчасти</h3><p data-i="s3p">Подбираем и устанавливаем качественные запчасти и комплектующие.</p></div>
-      <div class="card"><div class="n">04</div><h3 data-i="s4">Чистка и обслуживание</h3><p data-i="s4p">Профилактика, чистка фильтров и узлов, продление срока службы техники.</p></div>
-      <div class="card"><div class="n">05</div><h3 data-i="s5">Гарантия</h3><p data-i="s5p">На выполненные работы действует гарантия. Условия уточняйте при приёме.</p></div>
-      <div class="card"><div class="n">06</div><h3 data-i="s6">Консультация</h3><p data-i="s6p">Подскажем, стоит ли ремонтировать, и как продлить жизнь вашей техники.</p></div>
+    <div class="road reveal">
+      <svg class="road-svg" aria-hidden="true"><path class="r-edge"/><path class="r-base"/><path class="r-dash"/><path class="r-prog"/></svg>
+      <div class="r-marker" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4 4 0 0 0-5 5L3.8 17.2a1.8 1.8 0 0 0 2.5 2.5l5.7-5.7a4 4 0 0 0 5-5l-2.4 2.4-2.1-.5-.5-2.1z"/></svg></div>
+      <div class="rsteps">
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></div>
+          <h3 data-i="s1">Диагностика</h3>
+          <p data-i="s1p">Находим причину неисправности и называем стоимость до начала работ.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5 5L3.8 17.2a1.8 1.8 0 0 0 2.5 2.5l5.7-5.7a4 4 0 0 0 5-5l-2.4 2.4-2.1-.5-.5-2.1z"/></svg></div>
+          <h3 data-i="s2">Ремонт</h3>
+          <p data-i="s2p">Устраняем неисправности: от замены аккумулятора до ремонта плат и моторов.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+          <h3 data-i="s3">Запчасти</h3>
+          <p data-i="s3p">Подбираем и устанавливаем качественные запчасти и комплектующие.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div>
+          <h3 data-i="s4">Чистка и обслуживание</h3>
+          <p data-i="s4p">Профилактика, чистка фильтров и узлов, продление срока службы техники.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
+          <h3 data-i="s5">Гарантия</h3>
+          <p data-i="s5p">На выполненные работы действует гарантия. Условия уточняйте при приёме.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="cell">
+          <div class="tile"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></div>
+          <h3 data-i="s6">Консультация</h3>
+          <p data-i="s6p">Подскажем, стоит ли ремонтировать, и как продлить жизнь вашей техники.</p>
+        </div>
+      </div>
+      </div>
     </div>
     <div class="seg-cta reveal"><a class="btn fill" href="#plans" data-i="cta1">Оставить заявку</a></div>
   </div>
@@ -825,6 +900,42 @@ const WORKS=Array.from({length:8},()=>({before:null,after:null}));
     window.open('https://t.me/dinamica_mrkt?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
     dlg.close();f.reset();
   });
+})();
+
+// methodology road: winding path, marker follows scroll
+(function(){
+  const road=document.querySelector('.road');if(!road)return;
+  const svg=road.querySelector('.road-svg'),paths=[...svg.querySelectorAll('path')],prog=svg.querySelector('.r-prog'),marker=road.querySelector('.r-marker');
+  const steps=[...road.querySelectorAll('.rstep')];let L=1,centers=[],sx=0;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function build(){
+    const H=road.offsetHeight,W=svg.clientWidth||150,mobile=innerWidth<=860;
+    const cx=W/2,amp=mobile?Math.min(14,W*.2):38;
+    const rr=road.getBoundingClientRect();
+    centers=steps.map(st=>{const c=st.querySelector('.tile').getBoundingClientRect();return c.top-rr.top+c.height/2});
+    const xs=centers.map((_,i)=>mobile?cx+(i%2?amp:-amp):cx+(i%2?amp:-amp));
+    let d=`M${xs[0]},0 L${xs[0]},${centers[0]}`;
+    for(let i=1;i<centers.length;i++){const a={x:xs[i-1],y:centers[i-1]},b={x:xs[i],y:centers[i]},my=(a.y+b.y)/2;d+=` C${a.x},${my} ${b.x},${my} ${b.x},${b.y}`}
+    d+=` L${xs[xs.length-1]},${H}`;
+    paths.forEach(p=>p.setAttribute('d',d));
+    L=prog.getTotalLength();prog.style.strokeDasharray=L;
+    sx=svg.getBoundingClientRect().left-rr.left;
+    update();
+  }
+  function update(){
+    const rect=road.getBoundingClientRect();
+    const p=Math.max(0,Math.min(1,(innerHeight*.55-rect.top)/rect.height));
+    const pt=prog.getPointAtLength(p*L);
+    marker.style.transform=`translate(${sx+pt.x}px,${pt.y}px)`;
+    prog.style.strokeDashoffset=L*(1-p);
+    steps.forEach((st,i)=>st.classList.toggle('on',pt.y>=centers[i]-30));
+  }
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.25});
+  steps.forEach(st=>io.observe(st));
+  let tk=false;addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(()=>{update();tk=false})}},{passive:true});
+  addEventListener('resize',build);addEventListener('load',build);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+  build();
 })();
 </script>
 </body>
