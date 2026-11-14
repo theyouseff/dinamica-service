@@ -1002,7 +1002,8 @@ async function init(){
     panel:{ru:['Сенсорная панель','Цветной экран для выбора напитка и настроек. Влага и перепады напряжения могут её повредить.'],uz:['Sensorli panel','Ichimlik va sozlamalarni tanlash uchun rangli ekran. Namlik va kuchlanish o\'zgarishi uni shikastlashi mumkin.']},
     front:{ru:['Передняя панель','Закрывает механизмы спереди, создаёт нишу для чашки и защищает от брызг.'],uz:['Old panel','Mexanizmlarni oldindan yopadi, chashka uchun joy hosil qiladi va sachrashdan himoya qiladi.']},
     spout:{ru:['Блок выдачи','Хромированный блок с носиками подаёт кофе и молоко в чашку. Засор отверстий даёт неровную струю.'],uz:['Chiqarish bloki','Xromlangan blok kofe va sutni chashkaga uzatadi. Teshiklar tiqilsa, oqim notekis bo\'ladi.']},
-    chute:{ru:['Воронка и канал подачи','Направляет молотый кофе из кофемолки в заварочный блок. Влажный или маслянистый кофе налипает и забивает канал.'],uz:['Voronka va uzatish kanali','Maydalangan kofeni tegirmondan damlash blokiga yo\'naltiradi. Nam yoki moyli kofe yopishib, kanalni tiqib qo\'yadi.']},
+    funnel:{ru:['Воронка для зёрен','Конус между бункером и кофемолкой: направляет зёрна к жерновам ровным потоком. Посторонние предметы и масляный налёт застревают в узком горле.'],uz:['Don voronkasi','Idish bilan tegirmon orasidagi konus: donni tosh-pichoqlarga tekis oqim bilan yo\'naltiradi. Begona narsalar va moy qatlami tor bo\'g\'izda tiqilib qoladi.']},
+    chute:{ru:['Канал подачи молотого кофе','Воронка и трубка направляют молотый кофе из кофемолки в заварочный блок. Влажный или маслянистый кофе налипает и забивает канал.'],uz:['Maydalangan kofe kanali','Voronka va quvur maydalangan kofeni tegirmondan damlash blokiga yo\'naltiradi. Nam yoki moyli kofe yopishib, kanalni tiqib qo\'yadi.']},
     frother:{ru:['Капучинатор','Паровая трубка с насадкой взбивает молоко в пену. Засор отверстий и накипь дают слабый пар и плохую пену.'],uz:['Kapuchinator','Nasadkali bug\' trubkasi sutni ko\'pik qiladi. Teshiklar tiqilsa yoki qatqaloq bo\'lsa, bug\' zaif va ko\'pik yomon chiqadi.']},
     filter:{ru:['Фильтр воды','Смягчает воду и задерживает известь. Менять нужно вовремя: иначе накипь попадает в термоблок и насос.'],uz:['Suv filtri','Suvni yumshatadi va ohakni ushlab qoladi. O\'z vaqtida almashtirish kerak: aks holda qatqaloq termoblok va nasosga o\'tadi.']},
     milk:{ru:['Молочный контейнер','Хранит молоко и подаёт его по трубке на выход напитка. Остатки молока забивают трубку, поэтому её нужно промывать после каждого использования.'],uz:['Sut idishi','Sutni saqlaydi va quvur orqali ichimlik chiqish joyiga uzatadi. Sut qoldig\'i quvurni tiqadi, shuning uchun har ishlatgandan keyin yuvish kerak.']},
@@ -1011,7 +1012,7 @@ async function init(){
     hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Медные участки — горячая вода и пар, белая трубка — молоко. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv va bug\' uchun, oq quvur sut uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
     body:{ru:['Корпус','Каркас и боковые панели, на которых держится вся конструкция.'],uz:['Korpus','Butun konstruksiya tayanib turadigan karkas va yon panellar.']}
   };
-  const ORDER=['hopper','grinder','chute','brew','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','front','spout','cover','body'];
+  const ORDER=['hopper','funnel','grinder','chute','brew','tank','filter','pump','valve','boiler','hoses','frother','milk','board','grounds','drip','panel','front','spout','cover','body'];
   const UI={
     ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы узнать подробнее',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
     uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Batafsil bilish uchun detalga bosing',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
@@ -1099,10 +1100,15 @@ async function init(){
   cx.fillStyle='#7d8795';cx.fillRect(330,176,364,6);cx.fillStyle='#d9dde3';cx.fillRect(330,176,150,6);
   const screenTex=new THREE.CanvasTexture(scr);screenTex.colorSpace=THREE.SRGBColorSpace;screenTex.anisotropy=8;
 
-  part('hopper',[-0.6,1.75,-0.7],[0,2.5,0],g=>{
-    g.add(place(cyl(.6,.6,.7,M.glass),0,0,0));
-    g.add(place(cyl(.5,.5,.4,M.bean),0,-.15,0));
-    g.add(place(cyl(.64,.64,.1,M.silver),0,.4,0));
+  part('hopper',[-0.6,1.88,-0.7],[0,2.5,0],g=>{
+    g.add(place(cyl(.6,.6,.55,M.glass),0,0,0));
+    g.add(place(cyl(.5,.5,.32,M.bean),0,-.1,0));
+    g.add(place(cyl(.64,.64,.1,M.silver),0,.32,0));
+  });
+  part('funnel',[-0.6,1.5,-0.7],[0,1.7,0],g=>{
+    g.add(place(cyl(.56,.17,.22,M.steel,48),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.56,.03,12,48),M.silver),0,.11,0,Math.PI/2));
+    g.add(place(cyl(.17,.17,.1,M.silver,32),0,-.14,0));
   });
   part('cover',[0,2.25,-0.1],[0,1.5,0],g=>{
     g.add(place(box(3.0,.2,3.5,M.gloss,.1),0,0,0));
