@@ -1001,9 +1001,12 @@ async function init(){
     drip:{ru:['Поддон','Принимает капли и пролитую жидкость.'],uz:['Tomchi idishi','Tomchilar va to\'kilgan suyuqlikni qabul qiladi.']},
     panel:{ru:['Панель управления','Плата и кнопки: выбор напитка и настроек. Влага и перепады напряжения могут её повредить.'],uz:['Boshqaruv paneli','Plata va tugmalar: ichimlik va sozlamalarni tanlash. Namlik va kuchlanish o\'zgarishi uni shikastlashi mumkin.']},
     spout:{ru:['Выдача напитка','Подаёт кофе в чашку. Засор отверстий даёт неровную струю.'],uz:['Ichimlik chiqargich','Kofeni chashkaga quyadi. Teshiklar tiqilsa, oqim notekis bo\'ladi.']},
+    valve:{ru:['Электроклапан','Направляет воду из термоблока к заварочному блоку и сбрасывает давление. Накипь заставляет его залипать.'],uz:['Elektroklapan','Suvni termoblokdan damlash blokiga yo\'naltiradi va bosimni tushiradi. Qatqaloq uni yopishib qolishiga sabab bo\'ladi.']},
+    board:{ru:['Электронная плата','Управляет насосом, нагревом и кофемолкой. Влага и скачки напряжения выводят её из строя.'],uz:['Elektron plata','Nasos, qizdirish va tegirmonni boshqaradi. Namlik va kuchlanish sakrashi uni ishdan chiqaradi.']},
+    hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Тёмные участки — горячая вода. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
     body:{ru:['Корпус','Каркас и боковые панели, на которых держится вся конструкция.'],uz:['Korpus','Butun konstruksiya tayanib turadigan karkas va yon panellar.']}
   };
-  const ORDER=['hopper','cover','grinder','brew','tank','pump','boiler','grounds','drip','panel','spout','body'];
+  const ORDER=['hopper','cover','grinder','brew','tank','pump','valve','boiler','hoses','board','grounds','drip','panel','spout','body'];
   const UI={
     ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы узнать подробнее',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
     uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Batafsil bilish uchun detalga bosing',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
@@ -1035,6 +1038,8 @@ async function init(){
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(4.2,48),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,depthWrite:false}));
   shadow.rotation.x=-Math.PI/2;shadow.position.y=-2.32;scene.add(shadow);
 
+  const bc=document.createElement('canvas');bc.width=512;bc.height=100;const bx=bc.getContext('2d');bx.fillStyle='#e8eaee';bx.font='600 62px Jost, Arial, sans-serif';bx.textAlign='center';bx.textBaseline='middle';bx.fillText("De'Longhi",256,52);
+  const brandTex=new THREE.CanvasTexture(bc);brandTex.colorSpace=THREE.SRGBColorSpace;
   const M={
     dark:new THREE.MeshStandardMaterial({color:0x2c2e35,metalness:.55,roughness:.38}),
     black:new THREE.MeshStandardMaterial({color:0x08080a,metalness:.3,roughness:.4}),
@@ -1043,7 +1048,10 @@ async function init(){
     glass:new THREE.MeshStandardMaterial({color:0x2b2d33,metalness:.2,roughness:.08,transparent:true,opacity:.55}),
     water:new THREE.MeshStandardMaterial({color:0xa9bccf,metalness:0,roughness:.1,transparent:true,opacity:.42}),
     bean:new THREE.MeshStandardMaterial({color:0x4a3324,metalness:0,roughness:.8}),
-    led:new THREE.MeshBasicMaterial({color:0xffffff})
+    led:new THREE.MeshBasicMaterial({color:0xffffff}),
+    copper:new THREE.MeshStandardMaterial({color:0xb87333,metalness:.85,roughness:.3}),
+    pcb:new THREE.MeshStandardMaterial({color:0x1f4a33,metalness:.2,roughness:.6}),
+    chip:new THREE.MeshStandardMaterial({color:0x111214,metalness:.3,roughness:.5})
   };
   const box=(w,h,d,m,r=.07)=>new THREE.Mesh(new RoundedBoxGeometry(w,h,d,3,Math.min(r,w/2-.001,h/2-.001,d/2-.001)),m);
   const cyl=(rt,rb,h,m,seg=48)=>new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,seg),m);
@@ -1073,7 +1081,7 @@ async function init(){
     g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.5,.07,16,48),M.dark),0,.2,0,Math.PI/2));
     g.add(place(cyl(.14,.14,.9,M.steel),0,-.1,0));
   });
-  part('brew',[-0.7,0.35,-0.4],[-1.9,0.4,0.2],g=>{
+  part('brew',[-0.7,0.5,-0.4],[-1.9,0.4,0.2],g=>{
     g.add(place(box(1.1,1.2,1.3,M.steel,.08),0,0,0));
     g.add(place(cyl(.2,.2,.55,M.silver),0,.8,.1));
     g.add(place(cyl(.2,.2,.55,M.silver),0,-.8,.1));
@@ -1090,7 +1098,7 @@ async function init(){
     g.add(place(cyl(.16,.16,.3,M.silver),.5,0,0,0,0,Math.PI/2));
     g.add(place(cyl(.16,.16,.3,M.silver),-.5,0,0,0,0,Math.PI/2));
   });
-  part('boiler',[-0.7,-1.15,-1.0],[-1.4,-0.8,-1.3],g=>{
+  part('boiler',[-0.7,-1.4,-1.0],[-1.5,-0.7,-1.3],g=>{
     g.add(place(cyl(.3,.3,.85,M.silver),0,0,0));
     g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,.2,0,Math.PI/2));
     g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.3,.04,12,40),M.dark),0,-.2,0,Math.PI/2));
@@ -1105,7 +1113,8 @@ async function init(){
   });
   part('panel',[0,1.5,1.85],[0,0.6,2.3],g=>{
     g.add(place(box(3.0,1.1,.2,M.dark,.08),0,0,0));
-    g.add(place(box(1.2,.5,.04,M.black,.03),-.6,.12,.11));
+    g.add(place(box(1.2,.42,.04,M.black,.03),-.6,.06,.11));
+    g.add(place(new THREE.Mesh(new THREE.PlaneGeometry(1.0,.2),new THREE.MeshBasicMaterial({map:brandTex,transparent:true})),-.6,.43,.121));
     g.add(place(cyl(.3,.3,.1,M.silver),.95,.05,.12,Math.PI/2));
     for(let i=0;i<4;i++)g.add(place(cyl(.08,.08,.05,M.steel,24),-1.05+i*.35,-.33,.11,Math.PI/2));
     g.add(place(new THREE.Mesh(new THREE.SphereGeometry(.035,12,12),M.led),1.3,.38,.12));
@@ -1114,12 +1123,48 @@ async function init(){
     g.add(place(cyl(.2,.2,.4,M.silver),0,.1,0));
     g.add(place(cyl(.08,.08,.3,M.steel),0,-.18,0));
   });
+  part('valve',[-0.1,-1.0,-1.0],[0.1,-0.5,-1.7],g=>{
+    g.add(place(box(.38,.3,.3,M.steel,.04),0,0,0));
+    g.add(place(cyl(.14,.14,.36,M.copper,28),0,.32,0));
+    g.add(place(cyl(.06,.06,.5,M.silver,16),0,0,0,0,0,Math.PI/2));
+  });
+  part('board',[-0.6,0.7,-1.74],[0,0.5,-2.0],g=>{
+    g.add(place(box(1.1,1.0,.05,M.pcb,.02),0,0,0));
+    for(const [x,y,w,h] of [[-.25,.2,.28,.28],[.2,.25,.2,.2],[.25,-.15,.3,.2],[-.3,-.25,.22,.22]])g.add(place(box(w,h,.07,M.chip,.01),x,y,.05));
+    for(let i=0;i<4;i++)g.add(place(cyl(.06,.06,.12,M.silver,16),-.4+i*.16,-.42,.07,Math.PI/2));
+    g.add(place(box(.4,.12,.1,M.black,.01),.3,.42,.06));
+  });
   // body shell: back, left, right, base share the 'body' id
   part('body',[0,0,-1.9],[0,0,-2.6],g=>g.add(place(box(3.0,4.2,.12,M.dark,.06),0,0,0)));
   part('body',[-1.44,0,-0.05],[-2.4,0,0],g=>g.add(place(box(.12,4.2,3.75,M.dark,.06),0,0,0)));
   part('body',[1.44,0,-0.05],[2.4,0,0],g=>g.add(place(box(.12,4.2,3.75,M.dark,.06),0,0,0)));
   part('body',[0,-2.1,0],[0,-1.7,0],g=>{g.add(place(box(3.0,.2,3.9,M.dark,.07),0,0,0));
     for(const x of [-1.2,1.2])for(const z of [-1.5,1.5])g.add(place(cyl(.16,.2,.1,M.black,20),x,-.15,z))});
+
+  // ---- water hoses (rebuilt while parts move)
+  const G=id=>items.find(i=>i.id===id).group;
+  const hoseCold=new THREE.MeshStandardMaterial({color:0xaebccb,metalness:.1,roughness:.3,transparent:true,opacity:.9});
+  const hoseHot=new THREE.MeshStandardMaterial({color:0xd08a55,metalness:.3,roughness:.35});
+  const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+  const HOSES=[
+    {a:['tank',V(.15,-1.15,.3),V(0,-1,0)],b:['pump',V(.55,0,0),V(1,0,0)],m:hoseCold},
+    {a:['pump',V(-.55,0,0),V(-1,0,0)],b:['valve',V(.2,0,0),V(1,0,0)],m:hoseCold},
+    {a:['valve',V(-.2,0,0),V(-1,0,0)],b:['boiler',V(0,-.43,0),V(0,-1,0)],m:hoseHot},
+    {a:['boiler',V(0,.43,0),V(0,1,0)],b:['brew',V(0,-1.05,.1),V(0,-1,0)],m:hoseHot},
+    {a:['brew',V(0,.1,.65),V(0,0,1)],b:['spout',V(0,.3,0),V(0,1,0)],m:hoseHot}
+  ];
+  const hoseMeshes=HOSES.map(h=>{const m=new THREE.Mesh(new THREE.BufferGeometry(),h.m.clone());m.userData.pid='hoses';scene.add(m);h.mesh=m;return m});
+  function buildHoses(){
+    scene.updateMatrixWorld(true);
+    for(const h of HOSES){
+      const A=G(h.a[0]).localToWorld(h.a[1].clone()),B=G(h.b[0]).localToWorld(h.b[1].clone());
+      const dA=h.a[2].clone().transformDirection(G(h.a[0]).matrixWorld),dB=h.b[2].clone().transformDirection(G(h.b[0]).matrixWorld);
+      const len=A.distanceTo(B),k=Math.max(.35,len*.38);
+      const c=new THREE.CubicBezierCurve3(A,A.clone().addScaledVector(dA,k),B.clone().addScaledVector(dB,k),B);
+      h.mesh.geometry.dispose();h.mesh.geometry=new THREE.TubeGeometry(c,48,.055,10,false);
+    }
+  }
+  buildHoses();
 
   // ---- UI
   const legend=document.getElementById('xvLegend'),info=document.getElementById('xvInfo'),btn=document.getElementById('xvBtn'),hint=document.getElementById('xvHint');
@@ -1135,7 +1180,8 @@ async function init(){
     btn.textContent=goal?u.b2:u.b1;hint.textContent=goal?u.h2:u.h1;
   }
   window.__xv=refresh;
-  function paint(){for(const it of items){const on=(it.id===sel||it.id===hov);it.group.traverse(o=>{if(o.isMesh&&o.material.emissive){o.material.emissive.setHex(on?0x8a8f99:0x000000);o.material.emissiveIntensity=on?.9:0}})}}
+  function paint(){for(const hm of hoseMeshes){const on=(sel==='hoses'||hov==='hoses');hm.material.emissive.setHex(on?0x9aa0ab:0x000000);hm.material.emissiveIntensity=on?.9:0}
+    for(const it of items){const on=(it.id===sel||it.id===hov);it.group.traverse(o=>{if(o.isMesh&&o.material.emissive){o.material.emissive.setHex(on?0x8a8f99:0x000000);o.material.emissiveIntensity=on?.9:0}})}}
   function select(id){sel=id;paint();refresh()}
   function setHover(id){if(hov!==id){hov=id;paint()}}
   function toggle(v){goal=(v===undefined?(goal?0:1):(v?1:0));if(!goal)sel=null,paint();refresh()}
@@ -1145,7 +1191,7 @@ async function init(){
   const el=renderer.domElement;let down=null,idleT=0;
   const ray=new THREE.Raycaster(),mp=new THREE.Vector2();
   function pick(e){const r=el.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(mp,camera);
-    const hit=ray.intersectObjects(items.map(i=>i.group),true)[0];return hit?hit.object.userData.pid:null}
+    const hit=ray.intersectObjects(items.map(i=>i.group).concat(hoseMeshes),true)[0];return hit?hit.object.userData.pid:null}
   el.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY};controls.autoRotate=false});
   el.addEventListener('pointerup',e=>{
     idleT=performance.now();
@@ -1168,7 +1214,7 @@ async function init(){
   const ease=x=>1-Math.pow(1-x,3);
 
   // ---- loop
-  let visible=true,last=performance.now();
+  let visible=true,last=performance.now(),lastProg=-1;
   new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
   const tmp=new THREE.Vector3();
   function frame(now){
@@ -1182,6 +1228,7 @@ async function init(){
       const k=ease(Math.max(0,Math.min(1,(prog-it.delay)/(1-maxDelay))));
       it.group.position.copy(it.base).addScaledVector(it.dir,k);
     }
+    if(prog!==lastProg){buildHoses();lastProg=prog}
     // camera distance follows explosion progress
     const dCol=distFor(5.2,8.4),dExp=distFor(10.5,13.8),d=THREE.MathUtils.lerp(dCol,dExp,ease(prog));
     tmp.copy(camera.position).sub(controls.target);tmp.setLength(d);camera.position.copy(controls.target).add(tmp);
