@@ -1001,12 +1001,15 @@ async function init(){
     drip:{ru:['Поддон','Принимает капли и пролитую жидкость.'],uz:['Tomchi idishi','Tomchilar va to\'kilgan suyuqlikni qabul qiladi.']},
     panel:{ru:['Панель управления','Плата и кнопки: выбор напитка и настроек. Влага и перепады напряжения могут её повредить.'],uz:['Boshqaruv paneli','Plata va tugmalar: ichimlik va sozlamalarni tanlash. Namlik va kuchlanish o\'zgarishi uni shikastlashi mumkin.']},
     spout:{ru:['Выдача напитка','Подаёт кофе в чашку. Засор отверстий даёт неровную струю.'],uz:['Ichimlik chiqargich','Kofeni chashkaga quyadi. Teshiklar tiqilsa, oqim notekis bo\'ladi.']},
+    chute:{ru:['Воронка и канал подачи','Направляет молотый кофе из кофемолки в заварочный блок. Влажный или маслянистый кофе налипает и забивает канал.'],uz:['Voronka va uzatish kanali','Maydalangan kofeni tegirmondan damlash blokiga yo\'naltiradi. Nam yoki moyli kofe yopishib, kanalni tiqib qo\'yadi.']},
+    frother:{ru:['Капучинатор','Паровая трубка с насадкой взбивает молоко в пену. Засор отверстий и накипь дают слабый пар и плохую пену.'],uz:['Kapuchinator','Nasadkali bug\' trubkasi sutni ko\'pik qiladi. Teshiklar tiqilsa yoki qatqaloq bo\'lsa, bug\' zaif va ko\'pik yomon chiqadi.']},
+    filter:{ru:['Фильтр воды','Смягчает воду и задерживает известь. Менять нужно вовремя: иначе накипь попадает в термоблок и насос.'],uz:['Suv filtri','Suvni yumshatadi va ohakni ushlab qoladi. O\'z vaqtida almashtirish kerak: aks holda qatqaloq termoblok va nasosga o\'tadi.']},
     valve:{ru:['Электроклапан','Направляет воду из термоблока к заварочному блоку и сбрасывает давление. Накипь заставляет его залипать.'],uz:['Elektroklapan','Suvni termoblokdan damlash blokiga yo\'naltiradi va bosimni tushiradi. Qatqaloq uni yopishib qolishiga sabab bo\'ladi.']},
     board:{ru:['Электронная плата','Управляет насосом, нагревом и кофемолкой. Влага и скачки напряжения выводят её из строя.'],uz:['Elektron plata','Nasos, qizdirish va tegirmonni boshqaradi. Namlik va kuchlanish sakrashi uni ishdan chiqaradi.']},
-    hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Тёмные участки — горячая вода. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
+    hoses:{ru:['Водяные трубки','Соединяют бак, насос, термоблок, клапан и заварочный блок. Медные участки — горячая вода и пар. Трещины и накипь дают течь и слабый напор.'],uz:['Suv quvurlari','Idish, nasos, termoblok, klapan va damlash blokini bog\'laydi. Mis rangli qismlar issiq suv uchun. Yoriq va qatqaloq oqish va kuchsiz bosim beradi.']},
     body:{ru:['Корпус','Каркас и боковые панели, на которых держится вся конструкция.'],uz:['Korpus','Butun konstruksiya tayanib turadigan karkas va yon panellar.']}
   };
-  const ORDER=['hopper','cover','grinder','brew','tank','pump','valve','boiler','hoses','board','grounds','drip','panel','spout','body'];
+  const ORDER=['hopper','grinder','chute','brew','tank','filter','pump','valve','boiler','hoses','frother','board','grounds','drip','panel','spout','cover','body'];
   const UI={
     ru:{b1:'Разобрать',b2:'Собрать',h1:'Потяните, чтобы повернуть · нажмите, чтобы разобрать',h2:'Нажмите на деталь, чтобы узнать подробнее',i0:'Выберите деталь',i0p:'Нажмите на деталь или на кнопку ниже, чтобы узнать, зачем она нужна.'},
     uz:{b1:'Ajratish',b2:'Yig\'ish',h1:'Aylantirish uchun suring · ajratish uchun bosing',h2:'Batafsil bilish uchun detalga bosing',i0:'Detalni tanlang',i0p:'Nima uchun kerakligini bilish uchun detalga yoki quyidagi tugmaga bosing.'}
@@ -1076,10 +1079,15 @@ async function init(){
     g.add(place(box(3.0,.22,3.9,M.silver,.09),0,0,0));
     g.add(place(box(1.5,.03,1.3,M.black,.02),0.7,.12,0.7));
   });
-  part('grinder',[-0.7,1.5,-0.9],[0,0.85,0],g=>{
-    g.add(place(cyl(.5,.5,.7,M.silver),0,0,0));
-    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.5,.07,16,48),M.dark),0,.2,0,Math.PI/2));
-    g.add(place(cyl(.14,.14,.9,M.steel),0,-.1,0));
+  part('grinder',[-0.7,1.8,-0.9],[0,0.9,0],g=>{
+    g.add(place(cyl(.5,.5,.55,M.silver),0,0,0));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.5,.07,16,48),M.dark),0,.15,0,Math.PI/2));
+    g.add(place(cyl(.14,.14,.7,M.steel),0,-.05,0));
+  });
+  part('chute',[-0.7,1.3,-0.9],[-1.0,0.5,1.5],g=>{
+    g.add(place(cyl(.28,.1,.3,M.steel,32),0,.12,0));
+    g.add(place(cyl(.09,.09,.53,M.silver,24),0,-.09,.25,1.92));
+    g.add(place(new THREE.Mesh(new THREE.TorusGeometry(.12,.025,10,24),M.dark),0,-.18,.5,Math.PI/2));
   });
   part('brew',[-0.7,0.5,-0.4],[-1.9,0.4,0.2],g=>{
     g.add(place(box(1.1,1.2,1.3,M.steel,.08),0,0,0));
@@ -1123,6 +1131,18 @@ async function init(){
     g.add(place(cyl(.2,.2,.4,M.silver),0,.1,0));
     g.add(place(cyl(.08,.08,.3,M.steel),0,-.18,0));
   });
+  part('filter',[0.95,-0.55,-0.4],[2.3,-0.4,0.5],g=>{
+    g.add(place(cyl(.2,.2,.5,new THREE.MeshStandardMaterial({color:0xe6e8ec,metalness:.1,roughness:.4})),0,0,0));
+    g.add(place(cyl(.22,.22,.1,M.dark,32),0,.3,0));
+    g.add(place(cyl(.12,.12,.12,M.steel,24),0,-.3,0));
+  });
+  part('frother',[1.1,0.4,1.3],[2.0,-0.2,1.5],g=>{
+    g.add(place(cyl(.06,.06,.6,M.silver,20),0,.15,0));
+    g.add(place(cyl(.09,.09,.12,M.dark,20),0,.45,0));
+    g.add(place(cyl(.13,.13,.4,M.silver,32),0,-.25,0));
+    g.add(place(cyl(.045,.045,.18,M.steel,16),0,-.54,0));
+    g.add(place(cyl(.15,.15,.05,M.black,32),0,-.12,0));
+  });
   part('valve',[-0.1,-1.0,-1.0],[0.1,-0.5,-1.7],g=>{
     g.add(place(box(.38,.3,.3,M.steel,.04),0,0,0));
     g.add(place(cyl(.14,.14,.36,M.copper,28),0,.32,0));
@@ -1147,11 +1167,12 @@ async function init(){
   const hoseHot=new THREE.MeshStandardMaterial({color:0xd08a55,metalness:.3,roughness:.35});
   const V=(x,y,z)=>new THREE.Vector3(x,y,z);
   const HOSES=[
-    {a:['tank',V(.15,-1.15,.3),V(0,-1,0)],b:['pump',V(.55,0,0),V(1,0,0)],m:hoseCold},
+    {a:['filter',V(0,-.33,0),V(0,-1,0)],b:['pump',V(.55,0,0),V(1,0,0)],m:hoseCold},
     {a:['pump',V(-.55,0,0),V(-1,0,0)],b:['valve',V(.2,0,0),V(1,0,0)],m:hoseCold},
     {a:['valve',V(-.2,0,0),V(-1,0,0)],b:['boiler',V(0,-.43,0),V(0,-1,0)],m:hoseHot},
     {a:['boiler',V(0,.43,0),V(0,1,0)],b:['brew',V(0,-1.05,.1),V(0,-1,0)],m:hoseHot},
-    {a:['brew',V(0,.1,.65),V(0,0,1)],b:['spout',V(0,.3,0),V(0,1,0)],m:hoseHot}
+    {a:['brew',V(0,.1,.65),V(0,0,1)],b:['spout',V(0,.3,0),V(0,1,0)],m:hoseHot},
+    {a:['boiler',V(.28,.1,0),V(1,0,0)],b:['frother',V(0,.5,0),V(0,1,0)],m:hoseHot}
   ];
   const hoseMeshes=HOSES.map(h=>{const m=new THREE.Mesh(new THREE.BufferGeometry(),h.m.clone());m.userData.pid='hoses';scene.add(m);h.mesh=m;return m});
   function buildHoses(){
