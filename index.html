@@ -1481,8 +1481,17 @@ async function init(){
   // ---- interaction: click vs drag
   const el=renderer.domElement;let down=null,idleT=0;
   const ray=new THREE.Raycaster(),mp=new THREE.Vector2();
-  function pick(e){const r=el.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(mp,camera);
-    const hit=ray.intersectObjects(items.map(i=>i.group).concat(hoseMeshes.filter(h=>h.visible)),true)[0];return hit?hit.object.userData.pid:null}
+  function castAt(px,py){const r=el.getBoundingClientRect();mp.set((px-r.left)/r.width*2-1,-((py-r.top)/r.height)*2+1);ray.setFromCamera(mp,camera);
+    const hits=ray.intersectObjects(items.map(i=>i.group).concat(hoseMeshes.filter(h=>h.visible)),true).filter(h=>h.object.userData.pid&&h.object.visible);
+    if(!hits.length)return null;
+    if(sel){const own=hits.find(h=>h.object.userData.pid===sel);if(own)return sel}
+    return hits[0].object.userData.pid}
+  // forgiving picking: if the exact point misses, probe a small ring around it (helps thin parts and touch)
+  function pick(e){
+    const first=castAt(e.clientX,e.clientY);if(first)return first;
+    const rad=e.pointerType==='touch'?[14,26]:[6,12];
+    for(const rr of rad)for(let i=0;i<8;i++){const a=i/8*6.283,id=castAt(e.clientX+Math.cos(a)*rr,e.clientY+Math.sin(a)*rr);if(id)return id}
+    return null}
   el.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY};controls.autoRotate=false});
   el.addEventListener('pointerup',e=>{
     idleT=performance.now();
